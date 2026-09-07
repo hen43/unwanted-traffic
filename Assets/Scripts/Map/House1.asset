@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235c96614c83864429fbe6633c069563, type: 3}
+  m_Name: House1
+  m_EditorClassIdentifier: Assembly-CSharp::TerrainData
+  objectID: House1
+  objectPrefab: {fileID: 5975742947260180407, guid: ba6b9201ee9977b438f82b079d265179, type: 3}
+  spawnOffsetY: 2.3
+  weight: 10

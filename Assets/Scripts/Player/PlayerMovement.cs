@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private float moveX;
     private bool jumpHeld;
+    private bool jumpPressedThisFrame;
+    
+    [SerializeField] private float grabRadius;
 
     [SerializeField] private float spriteSize = 1.0f;
     [SerializeField] private Transform spriteTf;
@@ -14,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator animator;
 
     public LayerMask ground;
+    public LayerMask prop;
+    public Transform grab;
     public Transform rayLeftStart;
     public Transform rayRightStart;
     public float rayLength = 0.4f;
@@ -22,6 +27,11 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed = 5f;
     public float jumpStr = 10f;
+    public float launchStr = 14f;
+    private float coyoteTime = 0f;
+
+    private float xVel;
+    private float yVel;
 
     void Start()
     {
@@ -36,35 +46,77 @@ public class PlayerMovement : MonoBehaviour
     void OnJump(InputValue value)
     {
         jumpHeld = value.isPressed;
+
+        if (value.isPressed)
+        {
+            jumpPressedThisFrame = true;
+        }
+    }
+
+    public float FacingDir()
+    {
+        return spriteTf.localScale.x > 0 ? 1f : -1f;
+    }
+
+    void VoidNet()
+    {
+        if (transform.position.y < -30)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            
+            xVel = 0f;
+            yVel = 0f;
+
+            transform.position = new Vector3(0, 0, 0);
+        }
     }
 
     void Update()
     {
-        bool isGroundLeft = Physics2D.Raycast(rayLeftStart.position, Vector2.down, rayLength, ground);
-        bool isGroundRight = Physics2D.Raycast(rayRightStart.position, Vector2.down, rayLength, ground);
+        VoidNet();
+
+        bool isGroundLeft = Physics2D.Raycast(rayLeftStart.position, Vector2.down, rayLength, ground | prop);
+        bool isGroundRight = Physics2D.Raycast(rayRightStart.position, Vector2.down, rayLength, ground | prop);
         isGround = isGroundLeft || isGroundRight;
 
-        float xVel = moveX * speed;
-        float yVel = rb.linearVelocity.y;
+        bool isGrabbable = Physics2D.OverlapCircle(grab.position, grabRadius, ground | prop) && !isGround;
 
-        animator.SetFloat("player_speed", Mathf.Abs(xVel));
-        animator.SetBool("player_jumping", jumpHeld);
-        animator.SetBool("player_isGround", isGround);
-        animator.SetFloat("player_yVel", yVel);
+        xVel = moveX * speed;
+        yVel = rb.linearVelocity.y;
 
-        if (isGround){
-            animator.SetBool("player_jumping", false);
-        }
+        animator.SetFloat("speed", Mathf.Abs(xVel));
+        animator.SetBool("jumping", jumpHeld);
+        animator.SetBool("isGround", isGround);
+        animator.SetFloat("yVel", yVel);
 
-        if (xVel != 0)
+        if (coyoteTime > 0 && !isGround)
         {
-            spriteTf.localScale = new Vector2(xVel > 0 ? spriteSize : -spriteSize, spriteSize);
+            coyoteTime -= Time.deltaTime;
         }
 
-        if (jumpHeld && isGround && !jumpCooldown)
+        if (isGround)
+        {
+            animator.SetBool("jumping", false);
+            coyoteTime = 0.33f;
+        }
+
+        if (moveX != 0)
+        {
+            spriteTf.localScale = new Vector2(moveX > 0 ? spriteSize : -spriteSize, spriteSize);
+        }
+
+        if (jumpPressedThisFrame && isGrabbable)
+        {
+            yVel = launchStr;
+            coyoteTime = 0f;
+            jumpCooldown = true;
+        }
+        else if (jumpHeld && (isGround || coyoteTime > 0) && !jumpCooldown)
         {
             yVel = jumpStr;
             jumpCooldown = true;
+            coyoteTime = 0f;
         }
 
         if (!jumpHeld)
@@ -78,5 +130,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb.linearVelocity = new Vector2(xVel, yVel);
+
+        jumpPressedThisFrame = false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (grab != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(grab.position, grabRadius);
+        }
     }
 }

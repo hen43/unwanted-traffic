@@ -1,0 +1,75 @@
+{
+    "version": 1,
+    "name": "Debug Inputs",
+    "maps": [
+        {
+            "name": "Debug",
+            "id": "1846dbcf-97d9-4f96-bcab-05dce366e1fb",
+            "actions": [
+                {
+                    "name": "Gain Blood",
+                    "type": "Button",
+                    "id": "79de6102-cbd6-4b5a-b914-87197474999b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Lose Blood",
+                    "type": "Button",
+                    "id": "5dae5f60-31f5-485d-9640-36eec3fc1dde",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Spend Blood",
+                    "type": "Button",
+                    "id": "c0caec5f-171f-4f14-ba4f-e8fb6c7562d9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c7293502-2e94-4616-bca6-e87e3c69c2bd",
+                    "path": "<Keyboard>/9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lose Blood",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "187224e3-d903-42ee-bf85-a7f69bc34a9c",
+                    "path": "<Keyboard>/8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Gain Blood",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3849cd58-bf4e-4161-a985-217b9d21dfa0",
+                    "path": "<Keyboard>/0",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Spend Blood",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

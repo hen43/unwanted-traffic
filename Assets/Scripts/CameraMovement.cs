@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    public static CameraMovement instance;
+
     public Transform player;
     private Vector3 targetPos;
     public Vector2 targetOffset = new Vector2(0f, 2f);
@@ -12,19 +14,33 @@ public class CameraMovement : MonoBehaviour
     private float shakeYRange = 0.0f;
 
     private float startZ;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
+    void Awake(){
+        instance = this;
+    }
+
     void Start()
     {
         startZ = transform.position.z;
     
         // PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
     }
-    
+
+    public void Shake(float x){
+        shakeXRange = x;
+        shakeYRange = x;
+    }
+
+    public void Shake(float x, float y){
+        shakeXRange = x;
+        shakeYRange = y;
+    }
+
     // Update is called once per frame
     void LateUpdate()
     {   
-        shakeXRange *= 0.96f;
-        shakeYRange *= 0.96f;
+        shakeXRange *= 0.93f;
+        shakeYRange *= 0.93f;
         
         shakeX = Random.Range(-shakeXRange, shakeXRange);
         shakeY = Random.Range(-shakeYRange, shakeYRange);
