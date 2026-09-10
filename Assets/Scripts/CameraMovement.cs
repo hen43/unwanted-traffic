@@ -15,30 +15,37 @@ public class CameraMovement : MonoBehaviour
 
     private float startZ;
     
-    void Awake(){
+    void Awake()
+    {
         instance = this;
     }
 
     void Start()
     {
         startZ = transform.position.z;
-    
-        // PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
     }
 
-    public void Shake(float x){
+    public void SetTarget(Transform target)
+    {
+        player = target;
+    }
+
+    public void Shake(float x)
+    {
         shakeXRange = x;
         shakeYRange = x;
     }
 
-    public void Shake(float x, float y){
+    public void Shake(float x, float y)
+    {
         shakeXRange = x;
         shakeYRange = y;
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {   
+        if (player == null) return;
+
         shakeXRange *= 0.93f;
         shakeYRange *= 0.93f;
         

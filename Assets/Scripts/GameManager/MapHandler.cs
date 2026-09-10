@@ -5,18 +5,25 @@ using System.Collections.Generic;
 public class MapHandler : MonoBehaviour
 {
     private const string SeedKey = "PlayerSeed";
+
+    [Header("Prefabs & Groups")]
     public GameObject groundTile;
     public Transform terrainGroup;
     public Transform enemyGroup;
+
+    [Header("Data Lists")]
     public List<MapObjectData> mapObjects;
     public List<EnemyData> enemyTypes;
+
+    [Header("Map Settings")]
     public int TotalGroundTiles = 200;
     public int spacing = 40;
     private Vector3 initPos = new Vector3(6, 0, 0);
 
-    public int PlayerSeed { get; private set; }
+    public static event Action<Vector3> OnFirstTileLoaded;
 
-    private System.Random mapPRNG;
+    public int PlayerSeed { get; private set; }
+    private System.Random mapPRNG;    
 
     void Awake()
     {
@@ -24,26 +31,49 @@ public class MapHandler : MonoBehaviour
     }
 
     void Start()
-    {
-        GenerateMap();
+    { 
+        ResetMap();
     }
 
     void CheckSeed()
     {
         if (!PlayerPrefs.HasKey(SeedKey))
         {
-            int newSeed = UnityEngine.Random.Range(0, 999999);
-
-            PlayerPrefs.SetInt(SeedKey, newSeed);
+            int uniquePlayerSeed = UnityEngine.Random.Range(0, 999999);
+            PlayerPrefs.SetInt(SeedKey, uniquePlayerSeed);
             PlayerPrefs.Save();
         }
 
         PlayerSeed = PlayerPrefs.GetInt(SeedKey);
-        
-        mapPRNG = new System.Random(PlayerSeed);
     }
 
-    void GenerateMap()
+    public void ResetMap()
+    {
+        ClearMap();
+        mapPRNG = new System.Random(PlayerSeed);
+        GenerateMap(); // OnFirstTileLoaded will fire inside here and spawn the player
+    }
+
+    private void ClearMap()
+    {
+        if (terrainGroup != null)
+        {
+            for (int i = terrainGroup.childCount - 1; i >= 0; i--)
+            {
+                Destroy(terrainGroup.GetChild(i).gameObject);
+            }
+        }
+
+        if (enemyGroup != null)
+        {
+            for (int i = enemyGroup.childCount - 1; i >= 0; i--)
+            {
+                Destroy(enemyGroup.GetChild(i).gameObject);
+            }
+        }
+    }
+
+    private void GenerateMap()
     {
         float totalWeight = 0f;
         if (mapObjects != null)
@@ -54,12 +84,16 @@ public class MapHandler : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < TotalGroundTiles; i++)
+        for (int i = -5; i < TotalGroundTiles; i++)
         {
-            //Ground Tile
             Vector3 spawnPos = new Vector3(i * spacing, 0, 0);
             Vector3 tilePos = spawnPos + initPos;
             GameObject newTile = Instantiate(groundTile, tilePos, Quaternion.identity, terrainGroup);
+            
+            if (i == 0) 
+            { 
+                OnFirstTileLoaded?.Invoke(tilePos); 
+            }
 
             NumberedPrefab script = newTile.GetComponent<NumberedPrefab>();
             if (script != null)
@@ -67,7 +101,6 @@ public class MapHandler : MonoBehaviour
                 script.SetNumber(i + 1);
             }
 
-            //Map Objects
             MapObjectData selectedObj = null;
 
             if (mapObjects != null && mapObjects.Count > 0 && totalWeight > 0f)
@@ -97,15 +130,19 @@ public class MapHandler : MonoBehaviour
                 Instantiate(selectedObj.objectPrefab, tilePos + offsetY, Quaternion.identity, terrainGroup);
             }
 
-            //Enemy
-            int enemyExtra = mapPRNG.Next(1, 128);
-            int mult = Mathf.FloorToInt(Mathf.Log((float)enemyExtra)) - 1;
-            mult = Mathf.Max(0, mult);
-
-            for (int j = 0; j < mult; j++)
+            if (enemyTypes != null && enemyTypes.Count > 0 && enemyTypes[0].prefab != null)
             {
-                Vector3 enemyRand = new Vector3(mapPRNG.Next(-10, 10), 30 + (6 * j), 0);
-                GameObject newEnemy = Instantiate(enemyTypes[0].prefab, tilePos + enemyRand, Quaternion.identity, enemyGroup);
+                int enemyExtra = mapPRNG.Next(1, 128);
+                int mult = Mathf.Max(0, Mathf.FloorToInt(Mathf.Log(enemyExtra)) - 1);
+
+                for (int j = 0; j < mult; j++)
+                {
+                    if(i >= 5)
+                    {
+                        Vector3 enemyRand = new Vector3(mapPRNG.Next(-10, 10), 30 + (6 * j), 0);
+                        Instantiate(enemyTypes[0].prefab, tilePos + enemyRand, Quaternion.identity, enemyGroup);    
+                    }
+                }
             }
         }
     }

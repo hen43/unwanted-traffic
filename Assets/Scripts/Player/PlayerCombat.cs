@@ -22,12 +22,17 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.CurrentState != GameManager.GameState.Play) return;
+
         if(attackCooldown > 0){
             attackCooldown -= Time.deltaTime;
         }
     }
 
-    void OnAttack(){
+    void OnAttack()
+    {
+        if (GameManager.Instance.CurrentState != GameManager.GameState.Play) return;
+
         if(attackCooldown <= 0){
             attackCooldown = 0.2f;
             animator.SetTrigger("attack");
@@ -36,6 +41,7 @@ public class PlayerCombat : MonoBehaviour
     }
 
     public void Attack(){
+        
         Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackPoint.position, attackBox, 0f, enemyLayers);
 
         if(hitEnemies.Length > 0){

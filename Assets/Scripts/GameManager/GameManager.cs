@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     [field: SerializeField] public CurrencyHandler Currency { get; private set; }
     [field: SerializeField] public MapHandler Map { get; private set; }
+    [field: SerializeField] public PlayerSpawner PlayerSpawner { get; private set; }
 
     public GameState CurrentState { get; private set; }
 
@@ -34,6 +35,13 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         CurrentState = GameState.Play;
+    }
+
+    public void Rebirth()
+    {
+        if(Currency.GetBlood() <= 50) Currency.SetBlood(50);
+        Map.ResetMap();
+        SetState(GameState.Play);
     }
 
     public void SetState(GameState newState)

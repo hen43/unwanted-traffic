@@ -74,6 +74,24 @@ public class CurrencyHandler : MonoBehaviour
         return false;
     }
 
+    public void SetBlood(int amt)
+    {
+        CurrentBlood = amt;
+
+        if (CurrentBlood < 0) 
+        {
+            CurrentBlood = 0;
+            GameManager.Instance.SetState(GameManager.GameState.Dead);
+        }
+        else if (CurrentBlood > PeakBlood)
+        {
+            PeakBlood = CurrentBlood;
+        }
+
+        SaveBlood();
+        OnBloodChanged?.Invoke(CurrentBlood, PeakBlood);
+    }
+
     public int GetBlood() => CurrentBlood;
     public int GetPeakBlood() => PeakBlood;
 

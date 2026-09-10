@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -68,12 +67,18 @@ public class PlayerMovement : MonoBehaviour
             xVel = 0f;
             yVel = 0f;
 
-            transform.position = new Vector3(0, 0, 0);
+            MapHandler mapHandler = Object.FindAnyObjectByType<MapHandler>();
+            if (mapHandler != null)
+            {
+                mapHandler.ResetMap();
+            }
         }
     }
 
     void Update()
     {
+        if (GameManager.Instance != null && GameManager.Instance.CurrentState != GameManager.GameState.Play) return;
+        
         VoidNet();
 
         bool isGroundLeft = Physics2D.Raycast(rayLeftStart.position, Vector2.down, rayLength, ground | prop);
