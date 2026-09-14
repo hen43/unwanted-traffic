@@ -1232,7 +1232,6 @@ GameObject:
   - component: {fileID: 1096367129}
   - component: {fileID: 1096367128}
   - component: {fileID: 1096367130}
-  - component: {fileID: 1096367131}
   m_Layer: 5
   m_Name: Revenge
   m_TagString: Untagged
@@ -1354,23 +1353,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1096367131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1096367126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feb732d04e6f36044936dc5491b1c677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TooltipTrigger
-  content: 'Continue the run by setting your BLOOD to PEAK BLOOD. BLOOD and PEAK
-    BLOOD will drain to 100 in 30 seconds, but the duration is extended or lowered
-    from BLOOD gain and loss. In exchange, the player has enhanced stats for the
-    duration of REVENGE. '
-  header: REVENGE
 --- !u!1 &1144622540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,7 +1531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TooltipTrigger
   content: Resets the run with 100 BLOOD. Your PEAK BLOOD remains the same.
-  header: REBIRTH
+  header: REBORN ANEW
 --- !u!4 &1187065427 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4817368425435074077, guid: fd263d416a4cf564394c94b0d00175d5, type: 3}
@@ -2032,6 +2014,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   currencyHandler: {fileID: 1871077818}
   bloodText: {fileID: 563001221}
+  container: {fileID: 0}
 --- !u!114 &1528282913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2438,7 +2421,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918236049}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -2709,7 +2692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.88235295}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.78039217}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -2783,10 +2766,7 @@ MonoBehaviour:
   headerField: {fileID: 1323469396}
   contentField: {fileID: 683641790}
   layoutElement: {fileID: 2066189842}
-  rectTransform: {fileID: 2066189837}
   characterWrapLimit: 40
-  edgeThreshold: 250
-  tooltipOffset: {x: 10, y: -10}
 --- !u!1 &2071922293
 GameObject:
   m_ObjectHideFlags: 0
@@ -3353,7 +3333,7 @@ SceneRoots:
   - {fileID: 1054741302}
   - {fileID: 1747745389}
   - {fileID: 577549933}
-  - {fileID: 2071922297}
   - {fileID: 1918236053}
+  - {fileID: 2071922297}
   - {fileID: 1373405951}
   - {fileID: 683394508}

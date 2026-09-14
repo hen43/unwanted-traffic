@@ -6,8 +6,12 @@ public class CurrencyHandler : MonoBehaviour
 {
     public int CurrentBlood { get; private set; }
     public int PeakBlood { get; private set; }
+    
+    private float maxRevengeDuration = 30f;
+    private float revengeIncrement;
+    private float accumulatedDrain;
 
-    public event Action<int, int> OnBloodChanged;
+    public event Action<int, int, int> OnBloodChanged;
 
     private const string BloodSaveKey = "PlayerBlood";
     private const string PeakBloodSaveKey = "PlayerPeakBlood";
@@ -22,10 +26,10 @@ public class CurrencyHandler : MonoBehaviour
 
     private void OnEnable()
     {
+        GameManager.PlayerStateChanged += OnPlayerStateChanged;
+
         if (debugInputs == null) return;
-
         debugInputs.Debug.Enable();
-
         debugInputs.Debug.GainBlood.performed += OnGainBlood;
         debugInputs.Debug.LoseBlood.performed += OnLoseBlood;
         debugInputs.Debug.SpendBlood.performed += OnSpendBlood;
@@ -33,31 +37,63 @@ public class CurrencyHandler : MonoBehaviour
 
     private void OnDisable()
     {
-        if (debugInputs == null) return;
+        GameManager.PlayerStateChanged -= OnPlayerStateChanged;
 
+        if (debugInputs == null) return;
         debugInputs.Debug.GainBlood.performed -= OnGainBlood;
         debugInputs.Debug.LoseBlood.performed -= OnLoseBlood;
         debugInputs.Debug.SpendBlood.performed -= OnSpendBlood;
-
         debugInputs.Debug.Disable();
     }
 
-    public void ChangeBlood(int amt)
+    private void Update()
     {
-        CurrentBlood += amt;
+        if (GameManager.Instance != null && GameManager.Instance.CurrentPlayerState == GameManager.PlayerState.Revenge)
+        {
+            accumulatedDrain += revengeIncrement * Time.deltaTime;
+
+            int amountToDrain = Mathf.FloorToInt(accumulatedDrain);
+            if (amountToDrain > 0)
+            {
+                accumulatedDrain -= amountToDrain;
+                PeakBlood -= amountToDrain;
+                ChangeBlood(-amountToDrain);
+            }
+
+            if (CurrentBlood <= 100)
+            {
+                SetBlood(100);
+                GameManager.Instance.SetPlayerState(GameManager.PlayerState.Normal);
+            }
+        }
+    }
+
+    private void OnPlayerStateChanged(GameManager.PlayerState playerState)
+    {
+        if (playerState == GameManager.PlayerState.Revenge)
+        {
+            float difference = GetPeakBlood() - 100f;
+            revengeIncrement = difference / maxRevengeDuration;
+            accumulatedDrain = 0f;
+        }
+    }
+
+    public void ChangeBlood(int deltaBlood)
+    {
+        CurrentBlood += deltaBlood;
 
         if (CurrentBlood < 0) 
         {
             CurrentBlood = 0;
-            GameManager.Instance.SetState(GameManager.GameState.Dead);
+            GameManager.Instance.SetGameState(GameManager.GameState.Dead);
         }
         else if (CurrentBlood > PeakBlood)
         {
             PeakBlood = CurrentBlood;
         }
-        
+
         SaveBlood();
-        OnBloodChanged?.Invoke(CurrentBlood, PeakBlood);
+        OnBloodChanged?.Invoke(CurrentBlood, PeakBlood, deltaBlood);
     }   
 
     public bool SpendBlood(int amt)
@@ -66,9 +102,9 @@ public class CurrencyHandler : MonoBehaviour
         {
             CurrentBlood -= amt;
             PeakBlood -= amt;
-            
+
             SaveBlood();
-            OnBloodChanged?.Invoke(CurrentBlood, PeakBlood);
+            OnBloodChanged?.Invoke(CurrentBlood, PeakBlood, -amt);
             return true;
         }
         return false;
@@ -76,12 +112,13 @@ public class CurrencyHandler : MonoBehaviour
 
     public void SetBlood(int amt)
     {
+        int deltaBlood = amt - CurrentBlood;
         CurrentBlood = amt;
 
         if (CurrentBlood < 0) 
         {
             CurrentBlood = 0;
-            GameManager.Instance.SetState(GameManager.GameState.Dead);
+            GameManager.Instance.SetGameState(GameManager.GameState.Dead);
         }
         else if (CurrentBlood > PeakBlood)
         {
@@ -89,7 +126,7 @@ public class CurrencyHandler : MonoBehaviour
         }
 
         SaveBlood();
-        OnBloodChanged?.Invoke(CurrentBlood, PeakBlood);
+        OnBloodChanged?.Invoke(CurrentBlood, PeakBlood, deltaBlood);
     }
 
     public int GetBlood() => CurrentBlood;
@@ -108,20 +145,7 @@ public class CurrencyHandler : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // DEBUG
-
-    private void OnGainBlood(InputAction.CallbackContext ctx)
-    {
-        ChangeBlood(50);
-    }
-
-    private void OnLoseBlood(InputAction.CallbackContext ctx)
-    {
-        ChangeBlood(-50);
-    }
-
-    private void OnSpendBlood(InputAction.CallbackContext ctx)
-    {
-        SpendBlood(50);
-    }
+    private void OnGainBlood(InputAction.CallbackContext ctx) => ChangeBlood(50);
+    private void OnLoseBlood(InputAction.CallbackContext ctx) => ChangeBlood(-50);
+    private void OnSpendBlood(InputAction.CallbackContext ctx) => SpendBlood(50);
 }

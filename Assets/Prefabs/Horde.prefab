@@ -182,7 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   stayMult: 1.02
   speed: 4
-  speedIncreaseRate: 5
+  speedIncreaseDecay: 10
 --- !u!1 &8703339642792583054
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,6 @@ public class BloodCounter : MonoBehaviour
     
     [SerializeField] private CurrencyHandler currencyHandler;
     [SerializeField] private TMP_Text bloodText;
-    [SerializeField] private GameObject container;
 
     private void OnEnable(){
         if(currencyHandler != null){
@@ -20,7 +19,7 @@ public class BloodCounter : MonoBehaviour
         }
     }
 
-    private void HandleBloodChange(int current, int peak){
+    private void HandleBloodChange(int current, int peak, int delta){
         bloodText.text = $"{current.ToString()} / {peak.ToString()}";
         UIShake.instance.Shake(15f, 15f);
     }

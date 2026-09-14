@@ -51,7 +51,7 @@ public class MapHandler : MonoBehaviour
     {
         ClearMap();
         mapPRNG = new System.Random(PlayerSeed);
-        GenerateMap(); // OnFirstTileLoaded will fire inside here and spawn the player
+        GenerateMap();
     }
 
     private void ClearMap()
