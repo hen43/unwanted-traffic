@@ -15,7 +15,7 @@ public class Horde : MonoBehaviour
         cam = CameraMovement.instance;
         if (currencyHandler == null)
         {
-            currencyHandler = FindFirstObjectByType<CurrencyHandler>();
+            currencyHandler = FindAnyObjectByType<CurrencyHandler>();
         }
     }
 

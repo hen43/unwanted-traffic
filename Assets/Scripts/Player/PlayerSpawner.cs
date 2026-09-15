@@ -29,7 +29,7 @@ public class PlayerSpawner : MonoBehaviour
             CurrencyHandler currency = activePlayer.GetComponentInChildren<CurrencyHandler>();
             if (currency == null)
             {
-                currency = FindFirstObjectByType<CurrencyHandler>();
+                currency = FindAnyObjectByType<CurrencyHandler>();
             }
 
             if (currency != null)
@@ -63,7 +63,7 @@ public class PlayerSpawner : MonoBehaviour
 
         if (revengeTooltipTrigger == null)
         {
-            revengeTooltipTrigger = FindFirstObjectByType<TooltipTrigger>();
+            revengeTooltipTrigger = FindAnyObjectByType<TooltipTrigger>();
         }
 
         if (revengeTooltipTrigger != null)

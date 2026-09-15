@@ -33,7 +33,7 @@ public class PlayerStats : MonoBehaviour, ITooltipDataProvider
         { RMult.DamageReduction, 1.0f },
         { RMult.Damage,          1.5f },
         { RMult.Speed,           1.0f },
-        { RMult.Jump,            1.15f }
+        { RMult.Jump,            1.0f }
     };
 
     [Header("Dependencies")]
@@ -46,18 +46,18 @@ public class PlayerStats : MonoBehaviour, ITooltipDataProvider
             currencyHandler = GetComponent<CurrencyHandler>();
             if (currencyHandler == null)
             {
-                currencyHandler = FindFirstObjectByType<CurrencyHandler>();
+                currencyHandler = FindAnyObjectByType<CurrencyHandler>();
             }
         }
     }
 
     public RevengeStats CalculateRevenge(int blood, float decayRate = 0f)
     {
-        float dmgRd = blood / 2500f;
+        float dmgRd = blood / 3000f;
         float dmg = blood / 1000f;
         float speed = blood / 2500f;
-        float jump = blood / 1500f;
-        float reductionFactor = Mathf.Max(0.33f, 1.0f - dmgRd);
+        float jump = blood / 4000f;
+        float reductionFactor = Mathf.Max(0.2f, 1.0f - dmgRd);
 
         return new RevengeStats
         {
@@ -78,7 +78,7 @@ public class PlayerStats : MonoBehaviour, ITooltipDataProvider
     {
         if (currencyHandler == null)
         {
-            currencyHandler = FindFirstObjectByType<CurrencyHandler>();
+            currencyHandler = FindAnyObjectByType<CurrencyHandler>();
         }
 
         int activeBlood = currencyHandler != null ? currencyHandler.GetPeakBlood() : 0;

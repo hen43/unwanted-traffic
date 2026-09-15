@@ -32,7 +32,7 @@ public class PlayerCombat : MonoBehaviour
             playerStats = GetComponentInParent<PlayerStats>();
             if (playerStats == null)
             {
-                playerStats = FindFirstObjectByType<PlayerStats>();
+                playerStats = FindAnyObjectByType<PlayerStats>();
             }
         }
 
@@ -41,7 +41,7 @@ public class PlayerCombat : MonoBehaviour
             currencyHandler = GetComponentInParent<CurrencyHandler>();
             if (currencyHandler == null)
             {
-                currencyHandler = FindFirstObjectByType<CurrencyHandler>();
+                currencyHandler = FindAnyObjectByType<CurrencyHandler>();
             }
         }
     }

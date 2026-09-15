@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour, AnimationReceiver
 
         if (currencyHandler == null)
         {
-            currencyHandler = FindFirstObjectByType<CurrencyHandler>();
+            currencyHandler = FindAnyObjectByType<CurrencyHandler>();
         }
 
         if (rend != null)

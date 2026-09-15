@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private PlayerStats playerStats;
 
+    [SerializeField] private CurrencyHandler currencyHandler;
+
     public LayerMask ground;
     public LayerMask prop;
     public Transform grab;
@@ -86,6 +88,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        if (currencyHandler == null)
+        {
+            currencyHandler = GetComponentInParent<CurrencyHandler>();
+            if (currencyHandler == null)
+            {
+                currencyHandler = FindAnyObjectByType<CurrencyHandler>();
+            }
+        }
+    }
+
     void Update()
     {
         if (GameManager.Instance != null && GameManager.Instance.CurrentState != GameManager.GameState.Play) 
@@ -100,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (revenge && playerStats != null)
         {
-            RevengeStats stats = playerStats.CalculateRevenge(100);
+            RevengeStats stats = playerStats.CalculateRevenge(currencyHandler.GetPeakBlood());
             currentSpeed *= stats.speed;
             currentJump *= stats.jump;
         }
