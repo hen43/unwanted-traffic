@@ -6,6 +6,8 @@ public class PlayerSpawner : MonoBehaviour
     public float height = 5f;
     private GameObject activePlayer;
 
+    [SerializeField] private TooltipTrigger revengeTooltipTrigger;
+
     private void OnEnable()
     {
         MapHandler.OnFirstTileLoaded += SpawnPlayer;
@@ -23,6 +25,17 @@ public class PlayerSpawner : MonoBehaviour
         if (activePlayer == null)
         {
             activePlayer = Instantiate(playerPrefab, spawnPoint, Quaternion.identity);
+
+            CurrencyHandler currency = activePlayer.GetComponentInChildren<CurrencyHandler>();
+            if (currency == null)
+            {
+                currency = FindFirstObjectByType<CurrencyHandler>();
+            }
+
+            if (currency != null)
+            {
+                currency.SetBlood(100);
+            }
         }
         else
         {
@@ -39,6 +52,27 @@ public class PlayerSpawner : MonoBehaviour
         if (activePlayer != null && CameraMovement.instance != null)
         {
             CameraMovement.instance.SetTarget(activePlayer.transform);
+        }
+
+        BindTooltipTrigger();
+    }
+
+    private void BindTooltipTrigger()
+    {
+        if (activePlayer == null) return;
+
+        if (revengeTooltipTrigger == null)
+        {
+            revengeTooltipTrigger = FindFirstObjectByType<TooltipTrigger>();
+        }
+
+        if (revengeTooltipTrigger != null)
+        {
+            PlayerStats stats = activePlayer.GetComponentInChildren<PlayerStats>();
+            if (stats != null)
+            {
+                revengeTooltipTrigger.SetDynamicProvider(stats);
+            }
         }
     }
 }

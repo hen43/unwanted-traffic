@@ -1366,11 +1366,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb732d04e6f36044936dc5491b1c677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TooltipTrigger
+  header: REVENGE
   content: 'Continue the run by setting your BLOOD to PEAK BLOOD. BLOOD and PEAK
     BLOOD will drain to 100 in 30 seconds, but the duration is extended or lowered
     from BLOOD gain and loss. In exchange, the player has enhanced stats for the
     duration of REVENGE. '
-  header: REVENGE
+  dynamicProvider: {fileID: 0}
 --- !u!1 &1144622540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1548,8 +1549,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb732d04e6f36044936dc5491b1c677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TooltipTrigger
-  content: Resets the run with 100 BLOOD. Your PEAK BLOOD remains the same.
   header: REBIRTH
+  content: Resets the run with 100 BLOOD. Your PEAK BLOOD remains the same.
+  dynamicProvider: {fileID: 0}
 --- !u!4 &1187065427 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4817368425435074077, guid: fd263d416a4cf564394c94b0d00175d5, type: 3}
@@ -1974,6 +1976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSpawner
   playerPrefab: {fileID: 7185976859029470209, guid: 0ac591df411d5f74fa578ee180c1fcb2, type: 3}
   height: 5
+  revengeTooltipTrigger: {fileID: 1096367131}
 --- !u!4 &1485151371 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7322616337775630072, guid: ba6b9201ee9977b438f82b079d265179, type: 3}
@@ -2709,7 +2712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.88235295}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.9411765}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0

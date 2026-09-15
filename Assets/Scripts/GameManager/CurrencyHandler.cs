@@ -82,7 +82,15 @@ public class CurrencyHandler : MonoBehaviour
     {
         CurrentBlood += deltaBlood;
 
-        if (CurrentBlood < 0) 
+        if(GameManager.Instance.CurrentPlayerState == GameManager.PlayerState.Revenge)
+        {
+            if(deltaBlood < 0)
+            {
+                PeakBlood += deltaBlood;
+            }
+        }
+
+        if (CurrentBlood <= 0) 
         {
             CurrentBlood = 0;
             GameManager.Instance.SetGameState(GameManager.GameState.Dead);
@@ -131,6 +139,14 @@ public class CurrencyHandler : MonoBehaviour
 
     public int GetBlood() => CurrentBlood;
     public int GetPeakBlood() => PeakBlood;
+
+    public float GetRevengeDecayRate()
+    {
+        float difference = GetPeakBlood() - 100f;
+        if (difference <= 0f) return 0f;
+        
+        return difference / maxRevengeDuration; // Returns blood drained per second
+    }
 
     private void LoadBlood()
     {

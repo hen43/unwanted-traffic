@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Animator animator;
 
+    [SerializeField] private PlayerStats playerStats;
+
     public LayerMask ground;
     public LayerMask prop;
     public Transform grab;
@@ -32,9 +34,18 @@ public class PlayerMovement : MonoBehaviour
     private float xVel;
     private float yVel;
 
-    void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        if (playerStats == null)
+        {
+            playerStats = GetComponent<PlayerStats>();
+            if (playerStats == null)
+            {
+                playerStats = GetComponentInChildren<PlayerStats>();
+            }
+        }
     }
 
     void OnMove(InputValue value)
@@ -77,9 +88,22 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance != null && GameManager.Instance.CurrentState != GameManager.GameState.Play) return;
-        
+        if (GameManager.Instance != null && GameManager.Instance.CurrentState != GameManager.GameState.Play) 
+            return;
+
         VoidNet();
+
+        bool revenge = (GameManager.Instance != null && GameManager.Instance.CurrentPlayerState == GameManager.PlayerState.Revenge);
+        
+        float currentSpeed = speed;
+        float currentJump = jumpStr;
+
+        if (revenge && playerStats != null)
+        {
+            RevengeStats stats = playerStats.CalculateRevenge(100);
+            currentSpeed *= stats.speed;
+            currentJump *= stats.jump;
+        }
 
         bool isGroundLeft = Physics2D.Raycast(rayLeftStart.position, Vector2.down, rayLength, ground | prop);
         bool isGroundRight = Physics2D.Raycast(rayRightStart.position, Vector2.down, rayLength, ground | prop);
@@ -87,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
 
         bool isGrabbable = Physics2D.OverlapCircle(grab.position, grabRadius, ground | prop) && !isGround;
 
-        xVel = moveX * speed;
+        xVel = moveX * currentSpeed;
         yVel = rb.linearVelocity.y;
 
         animator.SetFloat("speed", Mathf.Abs(xVel));
@@ -119,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (jumpHeld && (isGround || coyoteTime > 0) && !jumpCooldown)
         {
-            yVel = jumpStr;
+            yVel = currentJump;
             jumpCooldown = true;
             coyoteTime = 0f;
         }

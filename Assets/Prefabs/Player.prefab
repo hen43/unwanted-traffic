@@ -169,8 +169,8 @@ GameObject:
   - component: {fileID: 705830770966704569}
   - component: {fileID: 8761683875243590436}
   - component: {fileID: 9177766926769718095}
-  - component: {fileID: 1884974905359750770}
   - component: {fileID: 8947151612527118621}
+  - component: {fileID: 1884974905359750770}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -443,6 +443,19 @@ MonoBehaviour:
   animator: {fileID: 6470206285664454540}
   attackBox: {x: 4, y: 1}
   attackEffect: {fileID: 9050892690373029040}
+--- !u!114 &8947151612527118621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7185976859029470209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dacc5b66827e094f88509f81ea1c41a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  currencyHandler: {fileID: 0}
 --- !u!114 &1884974905359750770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,18 +502,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &8947151612527118621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7185976859029470209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dacc5b66827e094f88509f81ea1c41a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1 &7809256338249679355
 GameObject:
   m_ObjectHideFlags: 0
