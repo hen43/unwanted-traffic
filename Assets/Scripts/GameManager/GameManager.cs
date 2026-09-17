@@ -47,6 +47,11 @@ public class GameManager : MonoBehaviour
 
     public void Rebirth()
     {
+        Debug.Log("Rebirth initiated.");
+    }
+
+    public void Revert()
+    {
         if (Currency.GetBlood() <= 100) Currency.SetBlood(100);
         PlayerStateChanged?.Invoke(PlayerState.Normal);
         Map.ResetMap();

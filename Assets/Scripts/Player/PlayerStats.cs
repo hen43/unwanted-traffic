@@ -106,7 +106,7 @@ public class PlayerStats : MonoBehaviour, ITooltipDataProvider
             "Continue the run by setting your BLOOD to PEAK BLOOD. " +
             "BLOOD and PEAK BLOOD will drain to 100 in 30 seconds, but the duration is " +
             "extended or lowered from BLOOD gain and loss. In exchange, the player has " +
-            "enhanced stats for the duration of REVENGE.";
+            "enhanced stats for the duration of REVENGE. All upgrades are kept.";
 
         return dynamicStatsText + baseDescription;
     }

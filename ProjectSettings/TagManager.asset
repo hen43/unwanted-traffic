@@ -40,6 +40,9 @@ TagManager:
   - 
   m_SortingLayers:
   - name: Background
+    uniqueID: 3122784863
+    locked: 0
+  - name: Background Object
     uniqueID: 900307169
     locked: 0
   - name: Default
@@ -47,3 +50,4 @@ TagManager:
     locked: 0
   m_RenderingLayers:
   - Default
+  m_MigratedRenderPipelines: []

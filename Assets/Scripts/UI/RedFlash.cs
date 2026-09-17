@@ -8,6 +8,9 @@ public class RedFlash : MonoBehaviour
     [SerializeField] private float flashDecaySpeed = 1.0f;
     [SerializeField] private float intensityMultiplier = 4.0f;
 
+    [Header("Revenge Mode Settings")]
+    [SerializeField] private float revengeBaseAlpha = 0.4f;
+
     private Image image;
 
     private void Awake()
@@ -40,23 +43,37 @@ public class RedFlash : MonoBehaviour
     {
         if (deltaBlood < 0)
         {
-            int previousBlood = current - deltaBlood;
-            
-            if (previousBlood > 0)
+            bool isRevenge = GameManager.Instance != null && 
+                             GameManager.Instance.CurrentPlayerState == GameManager.PlayerState.Revenge;
+
+            if (isRevenge)
             {
-                float damagePercent = (float)Mathf.Abs(deltaBlood) / previousBlood;
-                float effectStrength = Mathf.Clamp01(damagePercent * intensityMultiplier);
-                
-                image.color = new Color(1.0f, 0.0f, 0.0f, effectStrength);
+                image.color = new Color(1.0f, 0.0f, 0.0f, 0.0f);
+            }
+            else
+            {
+                int previousBlood = current - deltaBlood;
+                if (previousBlood > 0)
+                {
+                    float damagePercent = (float)Mathf.Abs(deltaBlood) / previousBlood;
+                    float effectStrength = Mathf.Clamp01(damagePercent * intensityMultiplier);
+                    
+                    image.color = new Color(1.0f, 0.0f, 0.0f, effectStrength);
+                }
             }
         }
     }
 
     private void Update()
     {
-        if (image.color.a > 0.0f)
+        bool isRevenge = GameManager.Instance != null && 
+                         GameManager.Instance.CurrentPlayerState == GameManager.PlayerState.Revenge;
+
+        float targetAlpha = isRevenge ? revengeBaseAlpha : 0.0f;
+
+        if (!Mathf.Approximately(image.color.a, targetAlpha))
         {
-            float newAlpha = Mathf.MoveTowards(image.color.a, 0f, flashDecaySpeed * Time.deltaTime);
+            float newAlpha = Mathf.MoveTowards(image.color.a, targetAlpha, flashDecaySpeed * Time.deltaTime);
             image.color = new Color(1.0f, 0.0f, 0.0f, newAlpha);
         }
     }
