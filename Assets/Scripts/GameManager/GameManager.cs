@@ -47,7 +47,15 @@ public class GameManager : MonoBehaviour
 
     public void Rebirth()
     {
-        Debug.Log("Rebirth initiated.");
+        // Debug.Log("Rebirth initiated.");
+        Map.ResetMap();
+        SetGameState(GameState.Shop);
+    }
+
+    public void ExitShop()
+    {
+        SetGameState(GameState.Play);
+        HideTooltip?.Invoke();
     }
 
     public void Revert()
@@ -94,6 +102,7 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0;
                 break;
             case GameState.Shop:
+                Time.timeScale = 0;
                 break;
             case GameState.Pause:
                 Time.timeScale = 0;
