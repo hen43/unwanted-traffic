@@ -13,6 +13,9 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [SerializeField] private MonoBehaviour dynamicProvider;
 
     private ITooltipDataProvider provider;
+    public string tooltipId;
+
+    private bool isHovered = false;
 
     private void Awake()
     {
@@ -30,7 +33,24 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         if (provider != null)
         {
-            TooltipSystem.Show(provider.GetContent(), provider.GetHeader());
+            TooltipSystem.Show(provider.GetContent(tooltipId), provider.GetHeader(tooltipId));
+        }
+        else
+        {
+            TooltipSystem.Show(content, header);
+        }
+    } 
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        TooltipSystem.Hide();
+    }
+
+    private void ShowTooltip()
+    {
+        if (provider != null)
+        {
+            TooltipSystem.Show(provider.GetContent(tooltipId), provider.GetHeader(tooltipId));
         }
         else
         {
@@ -38,9 +58,12 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    private void RefreshIfHovered(string updatedId)
     {
-        TooltipSystem.Hide();
+        if (isHovered && updatedId == tooltipId)
+        {
+            ShowTooltip();
+        }
     }
 
     public void HideTooltip()

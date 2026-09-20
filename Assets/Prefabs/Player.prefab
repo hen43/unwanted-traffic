@@ -415,6 +415,7 @@ MonoBehaviour:
   spriteTf: {fileID: 5705006143390965631}
   animator: {fileID: 6470206285664454540}
   playerStats: {fileID: 0}
+  shopHandler: {fileID: 0}
   currencyHandler: {fileID: 0}
   ground:
     serializedVersion: 2
@@ -447,6 +448,7 @@ MonoBehaviour:
     m_Bits: 128
   animator: {fileID: 6470206285664454540}
   playerStats: {fileID: 0}
+  shopHandler: {fileID: 0}
   currencyHandler: {fileID: 0}
   attackBox: {x: 4, y: 1}
   attackEffect: {fileID: 9050892690373029040}
@@ -457,11 +459,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7185976859029470209}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1dacc5b66827e094f88509f81ea1c41a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  shopHandler: {fileID: 0}
   currencyHandler: {fileID: 0}
 --- !u!114 &6980462577026410866
 MonoBehaviour:

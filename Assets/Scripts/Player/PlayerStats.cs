@@ -98,12 +98,31 @@ public class PlayerStats : MonoBehaviour, ITooltipDataProvider
         };
     }
 
-    public string GetHeader()
+    public string GetHeader(string id)
     {
-        return "REVENGE";
+        if (id == "Revenge")
+        {
+            return "REVENGE";
+        }
+        else
+        {
+            return "Unknown Tooltip ID";
+        }
     }
 
-    public string GetContent()
+    public string GetContent(string id)
+    {
+        if (id == "Revenge")
+        {
+            return GetRevengeTooltip();
+        }
+        else
+        {
+            return "Unknown Tooltip ID";
+        }
+    }
+
+    private string GetRevengeTooltip()
     {
         if (currencyHandler == null)
         {

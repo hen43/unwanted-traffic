@@ -1,5 +1,5 @@
 public interface ITooltipDataProvider
 {
-    string GetHeader();
-    string GetContent();
+    string GetHeader(string id);
+    string GetContent(string id);
 }

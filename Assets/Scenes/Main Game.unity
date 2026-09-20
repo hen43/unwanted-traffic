@@ -124,6 +124,39 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2753678460383271187, guid: 91b65998fea03d04490e95aabe8385d5, type: 3}
   m_PrefabInstance: {fileID: 6547829352527702308}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &116228543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 116228544}
+  m_Layer: 0
+  m_Name: Conehead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &116228544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116228543}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -969.9628, y: -580.3103, z: -21.82438}
+  m_LocalScale: {x: 2.1824381, y: 2.1824381, z: 2.1824381}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 141690361}
+  - {fileID: 683394508}
+  m_Father: {fileID: 907465042}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &141690357
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,11 +288,11 @@ Transform:
   m_GameObject: {fileID: 141690357}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.69, y: -18.4, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 116228544}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &225877195
 GameObject:
@@ -552,7 +585,8 @@ MonoBehaviour:
 
 
     REVENGE upgrades are unlocked at MAX Ability Upgrades.'
-  dynamicProvider: {fileID: 0}
+  dynamicProvider: {fileID: 1916204519}
+  tooltipId: Ability
 --- !u!1 &287925277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,13 +1300,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683394507}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.58, y: -19.1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.11000013, y: -0.70000076, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 907752673}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 116228544}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &683394509
 MonoBehaviour:
@@ -1461,6 +1495,7 @@ Transform:
   - {fileID: 1423490128}
   - {fileID: 1870060273}
   - {fileID: 1916204518}
+  - {fileID: 2059302732}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &709899074
@@ -1630,7 +1665,8 @@ MonoBehaviour:
     Current: {stat}
 
     Cost: {cost} '
-  dynamicProvider: {fileID: 0}
+  dynamicProvider: {fileID: 1916204519}
+  tooltipId: Damage
 --- !u!1 &907465041
 GameObject:
   m_ObjectHideFlags: 0
@@ -1668,6 +1704,7 @@ RectTransform:
   - {fileID: 246434416}
   - {fileID: 1076778260}
   - {fileID: 2025967042}
+  - {fileID: 116228544}
   m_Father: {fileID: 2071922297}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2334,6 +2371,7 @@ MonoBehaviour:
   header: REVENGE
   content: 'Continue the run by setting your BLOOD to PEAK BLOOD. BLOOD and PEAK BLOOD will drain to 100 in 30 seconds, but the duration is extended or lowered from BLOOD gain and loss. In exchange, the player has enhanced stats for the duration of REVENGE. '
   dynamicProvider: {fileID: 0}
+  tooltipId: Revenge
 --- !u!1 &1114846239
 GameObject:
   m_ObjectHideFlags: 0
@@ -2487,7 +2525,8 @@ MonoBehaviour:
     Current: {stat}
 
     Cost: {cost} '
-  dynamicProvider: {fileID: 0}
+  dynamicProvider: {fileID: 1916204519}
+  tooltipId: Speed
 --- !u!1 &1144622540
 GameObject:
   m_ObjectHideFlags: 0
@@ -2668,6 +2707,7 @@ MonoBehaviour:
   header: REVERT
   content: Return to the start with 100 BLOOD. Your PEAK BLOOD remains the same. All upgrades are kept.
   dynamicProvider: {fileID: 0}
+  tooltipId: 
 --- !u!4 &1187065427 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4817368425435074077, guid: fd263d416a4cf564394c94b0d00175d5, type: 3}
@@ -4197,6 +4237,7 @@ MonoBehaviour:
   currencyHandler: {fileID: 1871077818}
   upgrades: {fileID: 907465045}
   rebirth: {fileID: 1355047230}
+  playerStats: {fileID: 2059302733}
 --- !u!1 &1918236049
 GameObject:
   m_ObjectHideFlags: 0
@@ -4486,6 +4527,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025967041}
   m_CullTransparentMesh: 1
+--- !u!1 &2059302731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2059302732}
+  - component: {fileID: 2059302733}
+  m_Layer: 0
+  m_Name: PlayerStats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2059302732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059302731}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 709899073}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2059302733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059302731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dacc5b66827e094f88509f81ea1c41a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  shopHandler: {fileID: 1916204519}
+  currencyHandler: {fileID: 1871077818}
 --- !u!1 &2066189836
 GameObject:
   m_ObjectHideFlags: 0
@@ -5252,5 +5339,3 @@ SceneRoots:
   - {fileID: 2071922297}
   - {fileID: 1918236053}
   - {fileID: 1373405951}
-  - {fileID: 683394508}
-  - {fileID: 141690361}
