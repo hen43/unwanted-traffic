@@ -12,6 +12,9 @@ public struct RevengeStats
 
 public class PlayerStats : MonoBehaviour, ITooltipDataProvider
 {
+
+    [SerializeField] private ShopHandler shopHandler;
+
     public enum RMult
     {
         DamageReduction,
@@ -19,6 +22,27 @@ public class PlayerStats : MonoBehaviour, ITooltipDataProvider
         Speed,
         Jump
     }
+
+    public enum Stat
+    {
+        Damage,
+        Speed,
+    }
+    
+
+    public void Start()
+    {
+        if(shopHandler == null)
+        {
+            shopHandler = FindAnyObjectByType<ShopHandler>();
+        }
+    }
+
+    private Dictionary<Stat, float> defaultStats = new Dictionary<Stat, float>
+    {
+        { Stat.Damage, 25f },
+        { Stat.Speed, 15f },
+    };
 
     private Dictionary<RMult, float> defaultMult = new Dictionary<RMult, float>
     {
@@ -38,6 +62,11 @@ public class PlayerStats : MonoBehaviour, ITooltipDataProvider
 
     [Header("Dependencies")]
     [SerializeField] private CurrencyHandler currencyHandler;
+
+    public float getDefaultStat(Stat stat)
+    {
+        return defaultStats[stat];
+    }
 
     private void Awake()
     {

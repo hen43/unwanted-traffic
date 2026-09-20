@@ -125,19 +125,8 @@ public class ShopHandler : MonoBehaviour
         SaveMultipliers();
     }
 
-    public int GetMultiplier(Upgrade multiplier)
+    public int GetUpgradeCount(Upgrade upgrade)
     {
-        return currentUpgrade.ContainsKey(multiplier) ? currentUpgrade[multiplier] : defaultUpgrade[multiplier];
-    }
-
-    public void ResetMultipliers()
-    {
-        foreach (Upgrade upgrade in System.Enum.GetValues(typeof(Upgrade)))
-        {
-            string key = $"Mult_{upgrade}";
-            PlayerPrefs.DeleteKey(key);
-        }
-        PlayerPrefs.Save();
-        LoadMultipliers();
+        return currentUpgrade.ContainsKey(upgrade) ? currentUpgrade[upgrade] : defaultUpgrade[upgrade];
     }
 }

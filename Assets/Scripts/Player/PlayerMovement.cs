@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator animator;
 
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private ShopHandler shopHandler;
 
     [SerializeField] private CurrencyHandler currencyHandler;
 
@@ -98,6 +99,24 @@ public class PlayerMovement : MonoBehaviour
                 currencyHandler = FindAnyObjectByType<CurrencyHandler>();
             }
         }
+
+        if (playerStats == null)
+        {
+            playerStats = GetComponentInParent<PlayerStats>();
+            if (playerStats == null)
+            {
+                playerStats = FindAnyObjectByType<PlayerStats>();
+            }
+        }
+
+        if (shopHandler == null)
+        {
+            shopHandler = GetComponentInParent<ShopHandler>();
+            if (shopHandler == null)
+            {
+                shopHandler = FindAnyObjectByType<ShopHandler>();
+            }
+        }
     }
 
     void Update()
@@ -109,13 +128,13 @@ public class PlayerMovement : MonoBehaviour
 
         bool revenge = (GameManager.Instance != null && GameManager.Instance.CurrentPlayerState == GameManager.PlayerState.Revenge);
         
-        float currentSpeed = speed;
+        float revengeBoost = 1f;
         float currentJump = jumpStr;
 
-        if (revenge && playerStats != null)
+        if (revenge && playerStats != null && currencyHandler != null)
         {
             RevengeStats stats = playerStats.CalculateRevenge(currencyHandler.GetPeakBlood());
-            currentSpeed *= stats.speed;
+            revengeBoost = stats.speed;
             currentJump *= stats.jump;
         }
 
@@ -125,7 +144,19 @@ public class PlayerMovement : MonoBehaviour
 
         bool isGrabbable = Physics2D.OverlapCircle(grab.position, grabRadius, ground | prop) && !isGround;
 
-        xVel = moveX * currentSpeed;
+        float finalSpeed = 0f;
+        if (playerStats != null)
+        {
+            finalSpeed = playerStats.getDefaultStat(PlayerStats.Stat.Speed);
+        }
+
+        ShopHandler shopHandler = Object.FindAnyObjectByType<ShopHandler>();
+        if (shopHandler != null)
+        {
+            finalSpeed += (1 * shopHandler.GetUpgradeCount(ShopHandler.Upgrade.Speed));
+        }
+
+        xVel = moveX * finalSpeed * revengeBoost;
         yVel = rb.linearVelocity.y;
 
         animator.SetFloat("speed", Mathf.Abs(xVel));

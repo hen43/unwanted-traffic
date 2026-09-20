@@ -9,9 +9,9 @@ public class PlayerCombat : MonoBehaviour
     private CameraMovement cam;
 
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private ShopHandler shopHandler;
     [SerializeField] private CurrencyHandler currencyHandler;
 
-    private int baseAttackDmg = 35;
     public Vector2 attackBox;
     private float attackCooldown = 0f;
     public SpriteRenderer attackEffect;
@@ -42,6 +42,15 @@ public class PlayerCombat : MonoBehaviour
             if (currencyHandler == null)
             {
                 currencyHandler = FindAnyObjectByType<CurrencyHandler>();
+            }
+        }
+
+        if (shopHandler == null)
+        {
+            shopHandler = GetComponentInParent<ShopHandler>();
+            if (shopHandler == null)
+            {
+                shopHandler = FindAnyObjectByType<ShopHandler>();
             }
         }
     }
@@ -83,7 +92,7 @@ public class PlayerCombat : MonoBehaviour
             cam.Shake(0.2f);
         }
 
-        float finalDamage = baseAttackDmg;
+        float finalDamage = playerStats.getDefaultStat(PlayerStats.Stat.Damage) + (10 * shopHandler.GetUpgradeCount(ShopHandler.Upgrade.Damage));
         bool isRevenge = GameManager.Instance != null && GameManager.Instance.CurrentPlayerState == GameManager.PlayerState.Revenge;
 
         if (isRevenge && playerStats != null)
@@ -101,6 +110,7 @@ public class PlayerCombat : MonoBehaviour
             if (enemyComponent != null)
             {
                 enemyComponent.TakeDamage(calculatedDmg);
+                Debug.Log($"DAMAGE: {calculatedDmg} with {shopHandler.GetUpgradeCount(ShopHandler.Upgrade.Damage)} upgrades");
             }
         }
 
