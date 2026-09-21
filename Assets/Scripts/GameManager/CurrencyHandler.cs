@@ -171,7 +171,7 @@ public class CurrencyHandler : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    private void OnGainBlood(InputAction.CallbackContext ctx) => ChangeBlood(50);
-    private void OnLoseBlood(InputAction.CallbackContext ctx) => ChangeBlood(-50);
-    private void OnSpendBlood(InputAction.CallbackContext ctx) => SpendBlood(50);
+    private void OnGainBlood(InputAction.CallbackContext ctx) => ChangeBlood(500);
+    private void OnLoseBlood(InputAction.CallbackContext ctx) => ChangeBlood(-500);
+    private void OnSpendBlood(InputAction.CallbackContext ctx) => SpendBlood(500);
 }

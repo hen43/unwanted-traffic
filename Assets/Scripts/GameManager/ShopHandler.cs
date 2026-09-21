@@ -125,11 +125,29 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
     {
         if (currentUpgrade.ContainsKey(upgrade))
         {
-            currentUpgrade[upgrade]++;
-        }
+            int cost;
+            switch(upgrade)
+            {
+                case(Upgrade.Damage):
+                    cost = 300 + (200 * GetUpgradeCount(Upgrade.Damage));
+                    if(Spend(cost)){currentUpgrade[upgrade]++;};
+                    break;
+                case(Upgrade.Speed):
+                    cost = 500 + (250 * GetUpgradeCount(Upgrade.Speed));
+                    if(Spend(cost)){currentUpgrade[upgrade]++;};
+                    break;
+                case(Upgrade.Ability):
+                    if(GetUpgradeCount(Upgrade.Ability) < 4)
+                    {
+                        cost = 1000 + (1000 * GetUpgradeCount(Upgrade.Ability));
+                        if(Spend(cost)){currentUpgrade[upgrade]++;};
+                    }
+                    break;  
+            }
+        } 
         else
         {
-            currentUpgrade[upgrade] = defaultUpgrade[upgrade] + 1;
+            currentUpgrade[upgrade] = defaultUpgrade[upgrade];
         }
 
         SaveMultipliers();
@@ -168,44 +186,64 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
         }
     }
 
+    public bool Spend(int amt)
+    {
+        bool check1 = currencyHandler.GetPeakBlood() >= amt;
+        bool check2 = currencyHandler.GetBlood() >= amt; 
+        if(check1 && check2)
+        {
+            currencyHandler.SpendBlood(amt);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public string DamageContent()
     {
-        if (Stats == null)
-        {
-            return "Upgrades your damage by 10 for every upgrade.\n\nCurrent: Loading...";
-        }
-
-        float baseDamage = 0f;
-        try
-        {
-            baseDamage = Stats.getDefaultStat(PlayerStats.Stat.Damage);
-        }
-        catch
-        {
-            return "Upgrades your damage by 10 for every upgrade.\n\nCurrent: Loading...";
-        }
-
-        float dmg = baseDamage + (10 * GetUpgradeCount(Upgrade.Damage));
-        return $"Upgrades your damage by 10 for every upgrade.\n\nCurrent: {dmg}";
+        float dmg = playerStats.getDefaultStat(PlayerStats.Stat.Damage) + (10 * GetUpgradeCount(Upgrade.Damage));
+        int cost = 300 + (200 * GetUpgradeCount(Upgrade.Damage));
+        return "" + 
+        $"Upgrades your damage by 10 for every upgrade.\n\n" + 
+        $"Current: {dmg}\n" +
+        $"Cost: {FormatCost(cost)}";
     }
 
     public string SpeedContent()
     {
-        if (Stats == null)
-        {
-            return "Upgrades movement speed.\n\nCurrent: Loading...";
-        }
-
-        return "speed default text";
+        float spd = playerStats.getDefaultStat(PlayerStats.Stat.Speed) + (3 * GetUpgradeCount(Upgrade.Speed));
+        int cost = 500 + (250 * GetUpgradeCount(Upgrade.Speed));
+        return "" + 
+        $"Upgrades your speed by 3 for every upgrade.\n\n" + 
+        $"Current: {spd}\n" +
+        $"Cost: {FormatCost(cost)}";
     }
 
     public string AbilityContent()
     {
-        if (Stats == null)
-        {
-            return "Upgrades ability power.\n\nCurrent: Loading...";
+        float abil = GetUpgradeCount(Upgrade.Ability);
+        int cost = 1000 + (1000 * (int)abil);
+        if(abil >= 4){
+            cost = 9999999;
         }
+        return "" + 
+        $"Unlocks a new ability.\n\n" + 
+        $"Current: {abil}/4\n" +
+        $"Cost: {FormatCost(cost)}\n\n" + 
+        "REVENGE upgrades are unlocked at MAX Ability Upgrades.";
+    }
 
-        return "ability default text";
+    private string FormatCost(int cost)
+    {
+        bool canAfford = (currencyHandler.GetBlood() >= cost && currencyHandler.GetPeakBlood() >= cost); 
+        
+        if (canAfford)
+        {
+            return cost.ToString();
+        }
+        else
+        {
+            return $"<color=red>{cost}</color>";
+        }
     }
 }
