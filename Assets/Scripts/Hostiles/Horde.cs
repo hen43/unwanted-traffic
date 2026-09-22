@@ -4,7 +4,7 @@ public class Horde : MonoBehaviour
 {
     [SerializeField] private float stayMult = 1;
     public float speed;
-    public float speedIncreaseDecay = 20f;
+    public float speedIncreaseDecay = 10f;
 
     private float stayTimer = 0f;
     private CurrencyHandler currencyHandler; 
@@ -33,7 +33,7 @@ public class Horde : MonoBehaviour
     {
         transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
 
-        if (speed <= 12)
+        if (speed <= 14)
         {
             speed += (Time.deltaTime / speedIncreaseDecay);
         }

@@ -418,7 +418,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -382.42966, w: 0}
+  m_margin: {x: 0, y: 0, z: -382.42966, w: -91.75684}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4748,7 +4748,7 @@ MonoBehaviour:
   spacing: 10
   distanceTracker: {fileID: 215748097}
   spawnAheadDistance: 60
-  initialEnemySpawnX: 40
+  initialEnemySpawnX: 75
 --- !u!1 &2025967041
 GameObject:
   m_ObjectHideFlags: 0

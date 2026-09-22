@@ -93,6 +93,16 @@ public partial class @DebugInputs: IInputActionCollection2, IDisposable
             ""id"": ""1846dbcf-97d9-4f96-bcab-05dce366e1fb"",
             ""actions"": [
                 {
+                    ""name"": ""Go Forward"",
+                    ""type"": ""Button"",
+                    ""id"": ""4362a556-9b36-4a58-97ad-03f819e34cef"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
                     ""name"": ""Gain Blood"",
                     ""type"": ""Button"",
                     ""id"": ""79de6102-cbd6-4b5a-b914-87197474999b"",
@@ -156,6 +166,17 @@ public partial class @DebugInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Spend Blood"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""59b0b9d6-39ef-4b30-9f32-44f98b0bba45"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Go Forward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -164,6 +185,7 @@ public partial class @DebugInputs: IInputActionCollection2, IDisposable
 }");
         // Debug
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
+        m_Debug_GoForward = m_Debug.FindAction("Go Forward", throwIfNotFound: true);
         m_Debug_GainBlood = m_Debug.FindAction("Gain Blood", throwIfNotFound: true);
         m_Debug_LoseBlood = m_Debug.FindAction("Lose Blood", throwIfNotFound: true);
         m_Debug_SpendBlood = m_Debug.FindAction("Spend Blood", throwIfNotFound: true);
@@ -247,6 +269,7 @@ public partial class @DebugInputs: IInputActionCollection2, IDisposable
     // Debug
     private readonly InputActionMap m_Debug;
     private List<IDebugActions> m_DebugActionsCallbackInterfaces = new List<IDebugActions>();
+    private readonly InputAction m_Debug_GoForward;
     private readonly InputAction m_Debug_GainBlood;
     private readonly InputAction m_Debug_LoseBlood;
     private readonly InputAction m_Debug_SpendBlood;
@@ -261,6 +284,10 @@ public partial class @DebugInputs: IInputActionCollection2, IDisposable
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
         public DebugActions(@DebugInputs wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Debug/GoForward".
+        /// </summary>
+        public InputAction @GoForward => m_Wrapper.m_Debug_GoForward;
         /// <summary>
         /// Provides access to the underlying input action "Debug/GainBlood".
         /// </summary>
@@ -299,6 +326,9 @@ public partial class @DebugInputs: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_DebugActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_DebugActionsCallbackInterfaces.Add(instance);
+            @GoForward.started += instance.OnGoForward;
+            @GoForward.performed += instance.OnGoForward;
+            @GoForward.canceled += instance.OnGoForward;
             @GainBlood.started += instance.OnGainBlood;
             @GainBlood.performed += instance.OnGainBlood;
             @GainBlood.canceled += instance.OnGainBlood;
@@ -319,6 +349,9 @@ public partial class @DebugInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="DebugActions" />
         private void UnregisterCallbacks(IDebugActions instance)
         {
+            @GoForward.started -= instance.OnGoForward;
+            @GoForward.performed -= instance.OnGoForward;
+            @GoForward.canceled -= instance.OnGoForward;
             @GainBlood.started -= instance.OnGainBlood;
             @GainBlood.performed -= instance.OnGainBlood;
             @GainBlood.canceled -= instance.OnGainBlood;
@@ -368,6 +401,13 @@ public partial class @DebugInputs: IInputActionCollection2, IDisposable
     /// <seealso cref="DebugActions.RemoveCallbacks(IDebugActions)" />
     public interface IDebugActions
     {
+        /// <summary>
+        /// Method invoked when associated input action "Go Forward" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGoForward(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Gain Blood" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

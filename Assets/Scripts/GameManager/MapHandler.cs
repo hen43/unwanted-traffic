@@ -23,7 +23,7 @@ public class MapHandler : MonoBehaviour
     [Header("Dynamic Enemy Spawning")]
     [SerializeField] private Distance distanceTracker;
     [SerializeField] private float spawnAheadDistance = 60f;
-    [SerializeField] private float initialEnemySpawnX = 150f;
+    [SerializeField] private float initialEnemySpawnX = 75f;
     private float lastSpawnX;
 
     public static event Action<Vector3> OnFirstTileLoaded;
