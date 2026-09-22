@@ -20,6 +20,12 @@ public class MapHandler : MonoBehaviour
     public int spacing = 40;
     private Vector3 initPos = new Vector3(6, 0, 0);
 
+    [Header("Dynamic Enemy Spawning")]
+    [SerializeField] private Distance distanceTracker;
+    [SerializeField] private float spawnAheadDistance = 60f;
+    [SerializeField] private float initialEnemySpawnX = 150f;
+    private float lastSpawnX;
+
     public static event Action<Vector3> OnFirstTileLoaded;
 
     public int PlayerSeed { get; private set; }
@@ -32,7 +38,17 @@ public class MapHandler : MonoBehaviour
 
     void Start()
     { 
+        if (distanceTracker == null)
+        {
+            distanceTracker = FindAnyObjectByType<Distance>();
+        }
+
         ResetMap();
+    }
+
+    void Update()
+    {
+        CheckDynamicEnemySpawn();
     }
 
     void CheckSeed()
@@ -51,6 +67,7 @@ public class MapHandler : MonoBehaviour
     {
         ClearMap();
         mapPRNG = new System.Random(PlayerSeed);
+        lastSpawnX = initialEnemySpawnX;
         GenerateMap();
     }
 
@@ -75,12 +92,12 @@ public class MapHandler : MonoBehaviour
 
     private void GenerateMap()
     {
-        float totalWeight = 0f;
+        float totalObjectWeight = 0f;
         if (mapObjects != null)
         {
             foreach (var obj in mapObjects)
             {
-                totalWeight += obj.weight;
+                totalObjectWeight += obj.weight;
             }
         }
 
@@ -103,9 +120,9 @@ public class MapHandler : MonoBehaviour
 
             MapObjectData selectedObj = null;
 
-            if (mapObjects != null && mapObjects.Count > 0 && totalWeight > 0f)
+            if (mapObjects != null && mapObjects.Count > 0 && totalObjectWeight > 0f)
             {
-                float randomRoll = (float)(mapPRNG.NextDouble() * totalWeight);
+                float randomRoll = (float)(mapPRNG.NextDouble() * totalObjectWeight);
                 float currentSum = 0f;
 
                 foreach (var obj in mapObjects)
@@ -129,20 +146,73 @@ public class MapHandler : MonoBehaviour
                 Vector3 offsetY = new Vector3(0, selectedObj.spawnOffsetY, 0);
                 Instantiate(selectedObj.objectPrefab, tilePos + offsetY, Quaternion.identity, terrainGroup);
             }
+        }
+    }
 
-            if (enemyTypes != null && enemyTypes.Count > 0 && enemyTypes[0].prefab != null)
+    private void CheckDynamicEnemySpawn()
+    {
+        if (distanceTracker == null || enemyTypes == null || enemyTypes.Count == 0) return;
+
+        float currentDist = distanceTracker.dist;
+
+        if (currentDist + spawnAheadDistance >= lastSpawnX)
+        {
+            SpawnEnemyAtDistance(lastSpawnX, currentDist);
+            lastSpawnX += spacing;
+        }
+    }
+
+    private void SpawnEnemyAtDistance(float spawnX, float currentDist)
+    {
+        int enemyExtra = mapPRNG.Next(1, 128);
+        int mult = Mathf.Max(0, Mathf.FloorToInt(Mathf.Log(enemyExtra)) - 1);
+
+        int maxIndex = 0;
+        if (currentDist >= 1000f)
+        {
+            maxIndex = Mathf.Min(2, enemyTypes.Count - 1);
+        }
+        else if (currentDist >= 500f)
+        {
+            maxIndex = Mathf.Min(1, enemyTypes.Count - 1);
+        }
+
+        float unlockedTotalWeight = 0f;
+        for (int i = 0; i <= maxIndex; i++)
+        {
+            unlockedTotalWeight += enemyTypes[i].weight;
+        }
+
+        for (int j = 0; j < mult; j++)
+        {
+            EnemyData selectedEnemy = null;
+
+            if (unlockedTotalWeight > 0f)
             {
-                int enemyExtra = mapPRNG.Next(1, 128);
-                int mult = Mathf.Max(0, Mathf.FloorToInt(Mathf.Log(enemyExtra)) - 1);
+                float randomRoll = (float)(mapPRNG.NextDouble() * unlockedTotalWeight);
+                float currentSum = 0f;
 
-                for (int j = 0; j < mult; j++)
+                for (int i = 0; i <= maxIndex; i++)
                 {
-                    if(i >= 5)
+                    currentSum += enemyTypes[i].weight;
+                    if (randomRoll <= currentSum)
                     {
-                        Vector3 enemyRand = new Vector3(mapPRNG.Next(-10, 10), 30 + (6 * j), 0);
-                        Instantiate(enemyTypes[0].prefab, tilePos + enemyRand, Quaternion.identity, enemyGroup);    
+                        selectedEnemy = enemyTypes[i];
+                        break;
                     }
                 }
+            }
+
+            if (selectedEnemy == null)
+            {
+                selectedEnemy = enemyTypes[0];
+            }
+
+            if (selectedEnemy != null && selectedEnemy.prefab != null)
+            {
+                Vector3 enemyRand = new Vector3(mapPRNG.Next(-10, 10), 30 + (6 * j), 0);
+                Vector3 spawnPosition = new Vector3(spawnX, 0f, 0f) + enemyRand;
+                Instantiate(selectedEnemy.prefab, spawnPosition, Quaternion.identity, enemyGroup);
             }
         }
     }

@@ -19,11 +19,21 @@ public class Horde : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        GameManager.PlayerStateChanged += revengeSetback;
+    }
+
+    private void OnDisble()
+    {
+        GameManager.PlayerStateChanged -= revengeSetback;
+    }
+
     void Update()
     {
         transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
 
-        if (speed <= 14)
+        if (speed <= 12)
         {
             speed += (Time.deltaTime / speedIncreaseDecay);
         }
@@ -50,6 +60,11 @@ public class Horde : MonoBehaviour
         {
             stayTimer = 0;
         }
+    }
+
+    public void revengeSetback(GameManager.PlayerState playerState)
+    {
+        transform.position += new Vector3(speed * -5, 0, 0);
     }
 
     public void setSpeed(float inputSpeed)

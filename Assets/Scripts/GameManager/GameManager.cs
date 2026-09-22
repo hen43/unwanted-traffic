@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
         }
         Currency.SetBlood(Currency.GetPeakBlood());
         SetPlayerState(PlayerState.Revenge);
+        PlayerStateChanged?.Invoke(PlayerState.Revenge);
         SetGameState(GameState.Play);
         HideTooltip?.Invoke();
     }

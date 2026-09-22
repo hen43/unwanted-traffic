@@ -16,6 +16,7 @@ public class EnemyData : ScriptableObject
     public int health;
     public int damage;
     public int speed;
+    public int cashDrop;
 
     [Header("Behavior")]
     public AIType aiType;

@@ -209,7 +209,8 @@ public class Enemy : MonoBehaviour, AnimationReceiver
 
         if (currentHealth <= 0)
         {
-            int bloodAmt = 20 + Random.Range(-5, 6);
+            float cash = enemyData.cashDrop;
+            int bloodAmt = Mathf.FloorToInt(cash + Random.Range(-(cash*0.25f), (cash*0.25f)));
             currencyHandler?.ChangeBlood(bloodAmt);
             
             StartCoroutine(DeathSequence(0.5f, 0f));

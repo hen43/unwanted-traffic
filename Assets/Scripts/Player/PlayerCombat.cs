@@ -26,7 +26,6 @@ public class PlayerCombat : MonoBehaviour
             attackEffect.enabled = false;
         }
 
-        // Auto-assign dependencies dynamically if spawned at runtime
         if (playerStats == null)
         {
             playerStats = GetComponentInParent<PlayerStats>();
@@ -97,7 +96,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (isRevenge && playerStats != null)
         {
-            int blood = currencyHandler != null ? currencyHandler.GetPeakBlood() : 100;
+            int blood = currencyHandler != null ? currencyHandler.StartingRevengeBlood : 100;
             RevengeStats stats = playerStats.CalculateRevenge(blood);
             finalDamage *= stats.damage;
         }
