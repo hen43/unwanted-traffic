@@ -6,6 +6,7 @@ public class CurrencyHandler : MonoBehaviour
 {
     public int CurrentBlood { get; private set; }
     public int PeakBlood { get; private set; }
+    public int StartingRevengeBlood { get; private set; }
     
     private float maxRevengeDuration = 30f;
     private float revengeIncrement;
@@ -56,8 +57,7 @@ public class CurrencyHandler : MonoBehaviour
             if (amountToDrain > 0)
             {
                 accumulatedDrain -= amountToDrain;
-                PeakBlood -= amountToDrain;
-                ChangeBlood(-amountToDrain);
+                ApplyPassiveRevengeDrain(amountToDrain);
             }
 
             if (CurrentBlood <= 100)
@@ -68,12 +68,22 @@ public class CurrencyHandler : MonoBehaviour
         }
     }
 
+    private void ApplyPassiveRevengeDrain(int amount)
+    {
+        CurrentBlood = Mathf.Max(100, CurrentBlood - amount);
+        PeakBlood = Mathf.Max(100, PeakBlood - amount);
+
+        SaveBlood();
+        OnBloodChanged?.Invoke(CurrentBlood, PeakBlood, -amount);
+    }
+
     private void OnPlayerStateChanged(GameManager.PlayerState playerState)
     {
         if (playerState == GameManager.PlayerState.Revenge)
         {
-            float difference = GetPeakBlood() - 100f;
-            revengeIncrement = difference / maxRevengeDuration;
+            StartingRevengeBlood = GetPeakBlood();
+            float difference = StartingRevengeBlood - 100f;
+            revengeIncrement = Mathf.Max(0f, difference / maxRevengeDuration);
             accumulatedDrain = 0f;
         }
     }
@@ -85,7 +95,7 @@ public class CurrencyHandler : MonoBehaviour
             PlayerStats playerStats = FindAnyObjectByType<PlayerStats>();
             if (playerStats != null)
             {
-                RevengeStats stats = playerStats.CalculateRevenge(PeakBlood);
+                RevengeStats stats = playerStats.CalculateRevenge(StartingRevengeBlood);
                 deltaBlood = Mathf.RoundToInt(deltaBlood / stats.damageReduction);
             }
         }

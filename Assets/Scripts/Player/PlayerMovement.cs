@@ -133,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (revenge && playerStats != null && currencyHandler != null)
         {
-            RevengeStats stats = playerStats.CalculateRevenge(currencyHandler.GetPeakBlood());
+            RevengeStats stats = playerStats.CalculateRevenge(currencyHandler.StartingRevengeBlood);
             revengeBoost = stats.speed;
             currentJump *= stats.jump;
         }
