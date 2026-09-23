@@ -739,6 +739,63 @@ MonoBehaviour:
     REVENGE upgrades are unlocked at MAX Ability Upgrades.'
   dynamicProvider: {fileID: 1916204519}
   tooltipId: Ability
+--- !u!1001 &264296932
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2753678460383271187, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 29.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753678460383271187, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -24.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753678460383271187, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753678460383271187, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753678460383271187, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753678460383271187, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753678460383271187, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753678460383271187, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753678460383271187, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753678460383271187, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695384395114547370, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
+      propertyPath: m_Name
+      value: Zombie_Shoot (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
 --- !u!1 &287925277
 GameObject:
   m_ObjectHideFlags: 0
@@ -4744,11 +4801,12 @@ MonoBehaviour:
   enemyTypes:
   - {fileID: 11400000, guid: 8dd17eaca15766d4cbb8711217da0c5f, type: 2}
   - {fileID: 11400000, guid: c95cda71c99acc840b4a259e68832801, type: 2}
+  - {fileID: 11400000, guid: c28fc7b122a4ad743929dd52d5f34e74, type: 2}
   TotalGroundTiles: 200
   spacing: 10
   distanceTracker: {fileID: 215748097}
   spawnAheadDistance: 60
-  initialEnemySpawnX: 75
+  initialEnemySpawnX: 60
 --- !u!1 &2025967041
 GameObject:
   m_ObjectHideFlags: 0
@@ -5169,7 +5227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2080707357
 Transform:
   m_ObjectHideFlags: 0
@@ -5634,3 +5692,4 @@ SceneRoots:
   - {fileID: 2071922297}
   - {fileID: 1918236053}
   - {fileID: 1373405951}
+  - {fileID: 264296932}

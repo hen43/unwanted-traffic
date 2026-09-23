@@ -1,9 +1,5 @@
 using UnityEngine;
 
-public enum AIType{
-    Chase
-}
-
 [CreateAssetMenu(fileName = "EnemyData", menuName = "Scriptable Objects/Enemy Data")]
 public class EnemyData : ScriptableObject
 {
@@ -21,8 +17,9 @@ public class EnemyData : ScriptableObject
     [Header("Behavior")]
     public AIType aiType;
 
-
-    // AI's
-    // as in attack patterns, not fancy schmancy
-    // 1 = chase
+    
+    public enum AIType{
+        Chase,
+        Shoot
+    }
 } 

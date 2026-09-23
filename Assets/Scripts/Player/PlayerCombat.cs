@@ -105,6 +105,14 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
+
+            if(enemy.CompareTag("Bullet"))
+            {
+                // call this a parry later and give it effects
+                Debug.Log("broke bullet i think");
+                Destroy(enemy.gameObject);
+            }
+
             Enemy enemyComponent = enemy.GetComponent<Enemy>();
             if (enemyComponent != null)
             {

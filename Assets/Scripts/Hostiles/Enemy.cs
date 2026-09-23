@@ -20,8 +20,7 @@ public class Enemy : MonoBehaviour, AnimationReceiver
     private float flashDuration = 0.05f; 
 
     private int maxHealth;
-    // private int damage;
-    private int damage = 10; // for testing
+    private int damage = 10;
     private int speed;
     private int currentHealth;
 
@@ -39,6 +38,11 @@ public class Enemy : MonoBehaviour, AnimationReceiver
     public LayerMask playerLayer;
     public LayerMask ground;
     private float groundCheckLength = 0.8f;  
+
+    // make this a prefab later
+    [SerializeField] private Transform bulletPrefab;
+    public GameObject bullet;
+    public Transform bulletOrigin; 
 
     void Start()
     {
@@ -85,7 +89,22 @@ public class Enemy : MonoBehaviour, AnimationReceiver
         }
 
         if (rend == null) rend = GetComponentInChildren<SpriteRenderer>();
+        
+        switch(enemyData.aiType)
+        {
+            case(EnemyData.AIType.Chase):
+                Chase();
+                break;
+            case(EnemyData.AIType.Shoot):
+                Shoot();
+                break;
+            default:
+                break;
+        }
+    }
 
+    private void Chase()
+    {
         float playerX = Player.Instance.transform.position.x;
         float currentX = transform.position.x;
         float playerY = Player.Instance.transform.position.y;
@@ -117,11 +136,52 @@ public class Enemy : MonoBehaviour, AnimationReceiver
             } else {
                 dir = 0;
             }
-
         }
-        else
+    }
+
+    private void Shoot()
+    {
+        float playerX = Player.Instance.transform.position.x;
+        float currentX = transform.position.x;
+        float playerY = Player.Instance.transform.position.y;
+        float currentY = transform.position.y;
+        float distanceToPlayer = Mathf.Abs(playerX - currentX);
+        float heightToPlayer = Mathf.Abs(playerY - currentY);
+        attackRange = 15f;
+        attackRangeHeight = 15f;
+
+        if (distanceToPlayer <= detectionRange)
         {
-            dir = 0;
+            if (distanceToPlayer > 0.1f)
+            {
+                currentFlip = playerX < currentX;
+                
+                Vector3 localScale = transform.localScale;
+                localScale.x = currentFlip ? -Mathf.Abs(localScale.x) : Mathf.Abs(localScale.x);
+                transform.localScale = localScale;
+
+                if (rend != null) rend.flipX = false; 
+            }
+
+            dir = (playerX > currentX) ? 1 : -1;
+
+            Vector3 origin = bullet.transform.position;
+            Vector3 target = (Player.Instance.transform.position - origin).normalized;
+            
+            Debug.DrawRay(origin, target * attackRange, Color.green);
+            
+            RaycastHit2D lineOfSight = Physics2D.Raycast(origin, target, attackRange, wallCheckLayer);
+            bool LOS_Clear = (lineOfSight.collider == null);
+
+            bool playerInRange = (distanceToPlayer < attackRange) && (heightToPlayer < attackRangeHeight) && (LOS_Clear);
+            if (animator != null) animator.SetBool("PlayerInRange", playerInRange);
+
+            if(!playerInRange)
+            {
+                JumpCheck();
+            } else {
+                dir = 0;
+            }
         }
     }
 
@@ -129,11 +189,28 @@ public class Enemy : MonoBehaviour, AnimationReceiver
     {
         if (eventName == "Attack")
         {
-            Collider2D hitPlayer = Physics2D.OverlapCircle(attackOrigin.position, attackRadius, playerLayer);
-            if (hitPlayer != null)
+            if(enemyData.aiType == EnemyData.AIType.Chase)
             {
-                currencyHandler?.ChangeBlood(damage * -1);
-                cam.Shake(0.2f);
+                Collider2D hitPlayer = Physics2D.OverlapCircle(attackOrigin.position, attackRadius, playerLayer);
+                if (hitPlayer != null)
+                {
+                    currencyHandler?.ChangeBlood(damage * -1);
+                    cam.Shake(0.2f);
+                }
+            }
+
+            if(enemyData.aiType == EnemyData.AIType.Shoot){
+                Vector2 direction = (Player.Instance.transform.position - bulletOrigin.position).normalized;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                GameObject firedBullet = Instantiate(bullet, bulletOrigin.position, rotation);
+
+                Bullet bulletScript = firedBullet.GetComponent<Bullet>();
+                if (bulletScript != null)
+                {
+                    bulletScript.Initialize(enemyData.damage);
+                }
+                return;
             }
         }
     }

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Zombie_Shoot
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   ID: Zombie_Shoot
-  prefab: {fileID: 8695384395114547370, guid: c502139a661be424c9a822ec61959f97, type: 3}
+  prefab: {fileID: 8695384395114547370, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
   weight: 15
   health: 50
-  damage: 50
+  damage: 20
   speed: 6
   cashDrop: 75
-  aiType: 0
+  aiType: 1

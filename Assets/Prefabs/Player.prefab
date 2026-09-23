@@ -445,7 +445,7 @@ MonoBehaviour:
   attackPoint: {fileID: 7384945360597266972}
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 2176
+    m_Bits: 6272
   animator: {fileID: 6470206285664454540}
   playerStats: {fileID: 0}
   shopHandler: {fileID: 0}
