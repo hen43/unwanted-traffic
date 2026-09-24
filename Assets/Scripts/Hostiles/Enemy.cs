@@ -19,10 +19,10 @@ public class Enemy : MonoBehaviour, AnimationReceiver
 
     private float flashDuration = 0.05f; 
 
-    private int maxHealth;
-    private int damage = 10;
-    private int speed;
-    private int currentHealth;
+    private float maxHealth;
+    private float damage = 10;
+    private float speed;
+    private float currentHealth;
 
     [SerializeField] private float detectionRange = 12f;
  
@@ -44,16 +44,27 @@ public class Enemy : MonoBehaviour, AnimationReceiver
     public GameObject bullet;
     public Transform bulletOrigin; 
 
+    private Distance distanceTracker;
+    private float distance;
+    private float scaling = 0.002f;
+
     void Start()
     {
         cam = CameraMovement.instance;
         rb = GetComponent<Rigidbody2D>();
+        
+        if (distanceTracker == null)
+        {
+            distanceTracker = FindAnyObjectByType<Distance>();
+            distance = distanceTracker.dist;
+            Debug.Log($"spawned with multiplier {1 + distance * scaling}");
+        }
 
         if (enemyData != null)
         {
-            maxHealth = enemyData.health;
-            damage = enemyData.damage;
-            speed = enemyData.speed + Random.Range(-3,4);
+            maxHealth = enemyData.health * (1 + distance * scaling);
+            damage = enemyData.damage * (1 + distance * scaling);
+            speed = ((enemyData.speed) * Random.Range(0.5f, 1.5f)) * (1 + distance * scaling / 2);
         }
 
         if (spriteTransform == null)
@@ -194,7 +205,7 @@ public class Enemy : MonoBehaviour, AnimationReceiver
                 Collider2D hitPlayer = Physics2D.OverlapCircle(attackOrigin.position, attackRadius, playerLayer);
                 if (hitPlayer != null)
                 {
-                    currencyHandler?.ChangeBlood(damage * -1);
+                    currencyHandler?.ChangeBlood(Mathf.FloorToInt(damage * -1));
                     cam.Shake(0.2f);
                 }
             }
@@ -208,7 +219,7 @@ public class Enemy : MonoBehaviour, AnimationReceiver
                 Bullet bulletScript = firedBullet.GetComponent<Bullet>();
                 if (bulletScript != null)
                 {
-                    bulletScript.Initialize(enemyData.damage);
+                    bulletScript.Initialize(Mathf.FloorToInt(damage));
                 }
                 return;
             }
@@ -278,7 +289,9 @@ public class Enemy : MonoBehaviour, AnimationReceiver
         if (rend != null) rend.color = Color.red;
         yield return new WaitForSeconds(flashDuration);
         if (rend != null) rend.color = ogColor;
-    } 
+    }
+
+
 
     public void TakeDamage(int dmg)
     {
@@ -286,7 +299,7 @@ public class Enemy : MonoBehaviour, AnimationReceiver
 
         if (currentHealth <= 0)
         {
-            float cash = enemyData.cashDrop;
+            float cash = enemyData.cashDrop * (1 + distance * scaling * 0.5f);
             int bloodAmt = Mathf.FloorToInt(cash + Random.Range(-(cash*0.25f), (cash*0.25f)));
             currencyHandler?.ChangeBlood(bloodAmt);
             

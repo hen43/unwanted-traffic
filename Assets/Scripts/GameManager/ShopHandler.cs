@@ -201,20 +201,20 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
 
     public string DamageContent()
     {
-        float dmg = playerStats.getDefaultStat(PlayerStats.Stat.Damage) + (10 * GetUpgradeCount(Upgrade.Damage));
+        float dmg = playerStats.getDefaultStat(PlayerStats.Stat.Damage) + (20 * GetUpgradeCount(Upgrade.Damage));
         int cost = 300 + (200 * GetUpgradeCount(Upgrade.Damage));
         return "" + 
-        $"Upgrades your damage by 10 for every upgrade.\n\n" + 
+        $"Upgrades your damage by 20 for every upgrade.\n\n" + 
         $"Current: {dmg}\n" +
         $"Cost: {FormatCost(cost)}";
     }
 
     public string SpeedContent()
     {
-        float spd = playerStats.getDefaultStat(PlayerStats.Stat.Speed) + (3 * GetUpgradeCount(Upgrade.Speed));
+        float spd = playerStats.getDefaultStat(PlayerStats.Stat.Speed) + (5 * GetUpgradeCount(Upgrade.Speed));
         int cost = 500 + (250 * GetUpgradeCount(Upgrade.Speed));
         return "" + 
-        $"Upgrades your speed by 3 for every upgrade.\n\n" + 
+        $"Upgrades your speed by 5 for every upgrade.\n\n" + 
         $"Current: {spd}\n" +
         $"Cost: {FormatCost(cost)}";
     }
@@ -223,7 +223,7 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
     {
         float abil = GetUpgradeCount(Upgrade.Ability);
         int cost = 1000 + (1000 * (int)abil);
-        if(abil >= 4){
+        if(abil >= 3){
             cost = 9999999;
         }
         return "" + 

@@ -733,7 +733,7 @@ MonoBehaviour:
   content: 'Unlocks a new ability.
 
 
-    Currently unlocked: {amt / 4}
+    Currently unlocked: {amt / 3}
 
 
     REVENGE upgrades are unlocked at MAX Ability Upgrades.'
@@ -745,7 +745,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1054741302}
     m_Modifications:
     - target: {fileID: 2753678460383271187, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -753,7 +753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2753678460383271187, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -24.4
+      value: -19.77
       objectReference: {fileID: 0}
     - target: {fileID: 2753678460383271187, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
       propertyPath: m_LocalPosition.z
@@ -765,15 +765,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2753678460383271187, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2753678460383271187, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2753678460383271187, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2753678460383271187, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -796,6 +796,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
+--- !u!4 &264296933 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2753678460383271187, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
+  m_PrefabInstance: {fileID: 264296932}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &287925277
 GameObject:
   m_ObjectHideFlags: 0
@@ -2159,6 +2164,7 @@ Transform:
   m_Children:
   - {fileID: 494346671}
   - {fileID: 1961077868}
+  - {fileID: 264296933}
   - {fileID: 1864008259}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5692,4 +5698,3 @@ SceneRoots:
   - {fileID: 2071922297}
   - {fileID: 1918236053}
   - {fileID: 1373405951}
-  - {fileID: 264296932}
