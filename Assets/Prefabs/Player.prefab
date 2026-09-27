@@ -451,7 +451,14 @@ MonoBehaviour:
   shopHandler: {fileID: 0}
   currencyHandler: {fileID: 0}
   attackBox: {x: 4, y: 1}
+  abilityList:
+  - {fileID: 9131399226049960520, guid: b3b59ad706ff774439bdd36aa9076dc1, type: 3}
+  - {fileID: 9131399226049960520, guid: 05a16ae421fb9634f943115ac92161ab, type: 3}
+  - {fileID: 9131399226049960520, guid: 7d2d0aacac584234793b00bd44545183, type: 3}
   attackEffect: {fileID: 9050892690373029040}
+  forwardShift: 7
+  downShift: -8
+  backShift: -18
 --- !u!114 &8947151612527118621
 MonoBehaviour:
   m_ObjectHideFlags: 0

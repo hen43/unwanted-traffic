@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -10,11 +11,28 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private ShopHandler shopHandler;
-    [SerializeField] private CurrencyHandler currencyHandler;
+    [SerializeField] private CurrencyHandler currencyHandler;    
 
     public Vector2 attackBox;
     private float attackCooldown = 0f;
+    private float moveX;
+    private float moveY;
+
+    [SerializeField] private GameObject[] abilityList;
+
     public SpriteRenderer attackEffect;
+
+    public enum AbilityType
+    {
+        Forward,
+        Down,
+        Back
+    }
+
+    // for ability transposition
+    [SerializeField] private float forwardShift;
+    [SerializeField] private float downShift;
+    [SerializeField] private float backShift;
 
     void Start()
     {
@@ -117,7 +135,7 @@ public class PlayerCombat : MonoBehaviour
             if (enemyComponent != null)
             {
                 enemyComponent.TakeDamage(calculatedDmg);
-                Debug.Log($"DAMAGE: {calculatedDmg} with {shopHandler.GetUpgradeCount(ShopHandler.Upgrade.Damage)} upgrades");
+                // Debug.Log($"DAMAGE: {calculatedDmg} with {shopHandler.GetUpgradeCount(ShopHandler.Upgrade.Damage)} upgrades");
             }
         }
 
@@ -125,6 +143,84 @@ public class PlayerCombat : MonoBehaviour
         {
             attackEffect.enabled = false;
         }
+    }
+
+    public void OnCast()
+    {
+        moveX = playerMovement.moveX;
+        moveY = playerMovement.moveY;
+        // Debug.Log($"CASTED with x {moveX} and y {moveY}");
+
+        if(moveY == -1)
+        {
+            Ability(AbilityType.Down);
+            return;
+        }
+        if(moveX == -1)
+        {
+            Ability(AbilityType.Back);
+            return;
+        }
+        Ability(AbilityType.Forward);
+        return;
+    }
+
+    private void Ability(AbilityType type)
+    {
+        // Debug.Log($"CASTED as {type}");
+
+        int blood = currencyHandler.GetBlood(); 
+
+        switch(type)
+        {
+            case AbilityType.Forward:
+                if(shopHandler.GetUpgradeCount(ShopHandler.Upgrade.Ability) >= 1){
+                    if(blood >= 200) {
+                        currencyHandler.ChangeBlood(-200, true);
+                        AbilityForward();
+                    }
+                }
+                break;
+            case AbilityType.Down:
+                if(shopHandler.GetUpgradeCount(ShopHandler.Upgrade.Ability) >= 2){
+                    if(blood >= 250) {
+                        currencyHandler.ChangeBlood(-250, true);
+                        AbilityDown();
+                    }
+                }
+                break;
+            case AbilityType.Back:
+                if(shopHandler.GetUpgradeCount(ShopHandler.Upgrade.Ability) >= 3){
+                    if(blood >= 300) {
+                        currencyHandler.ChangeBlood(-300, true);
+                        AbilityBack();
+                    }
+                }
+                break;
+        }
+    }
+
+    private void AbilityForward()
+    {
+        Vector3 shift = new Vector3(playerMovement.dir * forwardShift, 0, 0); 
+        Instantiate(abilityList[0], transform.position + shift, Quaternion.identity);
+        return;
+    }
+
+    private void AbilityDown()
+    {
+        Vector3 shift = new Vector3(0, downShift, 0); 
+        playerMovement.SetYVel(20f);
+        Instantiate(abilityList[1], transform.position + shift, Quaternion.identity);
+        return;
+    }
+
+    private void AbilityBack()
+    {
+        Vector3 shift = new Vector3(backShift, 0, 0);
+        playerMovement.Launch(100f);
+        Instantiate(abilityList[2], transform.position + shift, abilityList[2].transform.rotation);
+        return;
     }
 
     void OnDrawGizmosSelected()

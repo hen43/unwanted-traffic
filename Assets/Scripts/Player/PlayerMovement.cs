@@ -4,7 +4,9 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private float moveX;
+    public float moveX { get; private set;}
+    public float moveY { get; private set;}
+    public int dir { get; private set; }
     private bool jumpHeld;
     private bool jumpPressedThisFrame;
     
@@ -36,6 +38,12 @@ public class PlayerMovement : MonoBehaviour
 
     private float xVel;
     private float yVel;
+    private bool yVelOverride;
+    private bool launching;
+    [SerializeField] private float launchXVel = 20f;
+    private float launchDuration;
+
+    private bool isJumping;
 
     private void Awake()
     {
@@ -53,7 +61,10 @@ public class PlayerMovement : MonoBehaviour
 
     void OnMove(InputValue value)
     {
-        moveX = value.Get<float>();
+        Vector2 input = value.Get<Vector2>();
+        moveX = input.x;
+        moveY = input.y;
+        // Debug.Log($"x: {moveX}, y: {moveY}");
     }
 
     void OnJump(InputValue value)
@@ -66,10 +77,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public float FacingDir()
+    public void SetYVel(float value)
     {
-        return spriteTf.localScale.x > 0 ? 1f : -1f;
+        yVel = value;
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, yVel);
+        yVelOverride = true;
+        isJumping = false;
     }
+
+    public void Launch(float amt)
+    {
+        launchDuration = 0.125f;
+        launchXVel = amt;
+        launching = true;
+    }
+
+    // unused
+    // public float FacingDir()
+    // {
+    //     return spriteTf.localScale.x > 0 ? 1f : -1f;
+    // }
 
     void VoidNet()
     {
@@ -91,6 +118,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        launching = false;
+        launchDuration = 0;
+
         if (currencyHandler == null)
         {
             currencyHandler = GetComponentInParent<CurrencyHandler>();
@@ -126,6 +156,15 @@ public class PlayerMovement : MonoBehaviour
 
         VoidNet();
 
+        if(launchDuration > 0f)
+        {
+            launchDuration -= Time.deltaTime;
+        }
+        else
+        {
+            launching = false;
+        }
+
         bool revenge = (GameManager.Instance != null && GameManager.Instance.CurrentPlayerState == GameManager.PlayerState.Revenge);
         
         float revengeBoost = 1f;
@@ -157,7 +196,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         xVel = moveX * finalSpeed * revengeBoost;
-        yVel = rb.linearVelocity.y;
+
+        if(!yVelOverride)
+        {
+            yVel = rb.linearVelocity.y;
+        }
 
         animator.SetFloat("speed", Mathf.Abs(xVel));
         animator.SetBool("jumping", jumpHeld);
@@ -177,7 +220,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (moveX != 0)
         {
-            spriteTf.localScale = new Vector2(moveX > 0 ? spriteSize : -spriteSize, spriteSize);
+            if(moveX > 0)
+            {
+                spriteTf.localScale = new Vector2(spriteSize, spriteSize);
+                dir = 1;
+            } 
+            else 
+            {
+                spriteTf.localScale = new Vector2(-spriteSize, spriteSize);
+                dir = -1;
+            }
         }
 
         if (jumpPressedThisFrame && isGrabbable)
@@ -185,27 +237,42 @@ public class PlayerMovement : MonoBehaviour
             yVel = launchStr;
             coyoteTime = 0f;
             jumpCooldown = true;
+            isJumping = true;
         }
         else if (jumpHeld && (isGround || coyoteTime > 0) && !jumpCooldown)
         {
             yVel = currentJump;
             jumpCooldown = true;
             coyoteTime = 0f;
+            isJumping = true;
         }
 
-        if (!jumpHeld)
+        if (!jumpHeld && isJumping)
         {
             jumpCooldown = false;
-            
+            isJumping = false;
+
             if (yVel > 0)
             {
                 yVel = 0.25f;
             }
         }
+        else if (!jumpHeld)
+        {
+            jumpCooldown = false;
+        }
 
-        rb.linearVelocity = new Vector2(xVel, yVel);
+        if(!launching)
+        {
+            rb.linearVelocity = new Vector2(xVel, yVel);
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(launchXVel, yVel);
+        }
 
         jumpPressedThisFrame = false;
+        yVelOverride = false;
     }
 
     private void OnDrawGizmosSelected()

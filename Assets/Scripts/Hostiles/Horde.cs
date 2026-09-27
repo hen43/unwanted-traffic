@@ -44,7 +44,7 @@ public class Horde : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             stayTimer += Mathf.Pow(stayMult, Time.deltaTime);
-            currencyHandler?.ChangeBlood(-1 * (1 + Mathf.FloorToInt(stayTimer)));
+            currencyHandler?.ChangeBlood(-1 * (1 + Mathf.FloorToInt(stayTimer)), false);
             cam.Shake(Mathf.Clamp((stayTimer * 0.1f), 0f, 1f));
         }
 

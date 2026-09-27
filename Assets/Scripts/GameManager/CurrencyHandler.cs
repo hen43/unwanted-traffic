@@ -88,15 +88,21 @@ public class CurrencyHandler : MonoBehaviour
         }
     }
 
-    public void ChangeBlood(int deltaBlood)
+    public void ChangeBlood(int deltaBlood, bool bypassRevenge)
     {
         if (deltaBlood < 0 && GameManager.Instance != null && GameManager.Instance.CurrentPlayerState == GameManager.PlayerState.Revenge)
         {
             PlayerStats playerStats = FindAnyObjectByType<PlayerStats>();
+                RevengeStats stats = playerStats.CalculateRevenge(StartingRevengeBlood);
             if (playerStats != null)
             {
-                RevengeStats stats = playerStats.CalculateRevenge(StartingRevengeBlood);
-                deltaBlood = Mathf.RoundToInt(deltaBlood / stats.damageReduction);
+                if(!bypassRevenge){
+                    deltaBlood = Mathf.RoundToInt(deltaBlood / stats.damageReduction);
+                } 
+                else 
+                {
+                    deltaBlood = Mathf.RoundToInt(deltaBlood);
+                }
             }
         }
 
@@ -181,7 +187,7 @@ public class CurrencyHandler : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    private void OnGainBlood(InputAction.CallbackContext ctx) => ChangeBlood(500);
-    private void OnLoseBlood(InputAction.CallbackContext ctx) => ChangeBlood(-500);
+    private void OnGainBlood(InputAction.CallbackContext ctx) => ChangeBlood(500, true);
+    private void OnLoseBlood(InputAction.CallbackContext ctx) => ChangeBlood(-500, true);
     private void OnSpendBlood(InputAction.CallbackContext ctx) => SpendBlood(500);
 }

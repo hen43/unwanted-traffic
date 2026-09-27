@@ -13,7 +13,8 @@
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": true,
+                    "priority": 0
                 },
                 {
                     "name": "Jump",
@@ -22,7 +23,8 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": true,
+                    "priority": 0
                 },
                 {
                     "name": "Attack",
@@ -31,14 +33,35 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Cast",
+                    "type": "Button",
+                    "id": "23034625-6bf7-4b02-abf7-67cbd20e73d0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Rebirth",
+                    "type": "Button",
+                    "id": "366e5bef-c321-4b9c-b6d4-815bfade3a3a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
                 {
                     "name": "Horizontal Axis",
                     "id": "fd2fb1c1-71a5-4042-a0b9-8450a11914ec",
-                    "path": "1DAxis",
+                    "path": "2DVector(mode=1)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -47,8 +70,30 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
+                    "name": "Up",
                     "id": "573cc7f3-c1d3-4ced-8444-d9b062794742",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Down",
+                    "id": "d2cc1dfa-b4b2-4bc8-a9da-d3ed610a1b65",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Left",
+                    "id": "f7a27413-6e23-4354-8811-9f9c742997f9",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
@@ -58,8 +103,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
-                    "id": "d2cc1dfa-b4b2-4bc8-a9da-d3ed610a1b65",
+                    "name": "Right",
+                    "id": "d628f525-4d06-4a4e-b5d0-e459ff3c1752",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
@@ -67,17 +112,6 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "a0525b14-6591-43a0-9b14-7dcbbf1b2ad5",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -92,8 +126,8 @@
                 },
                 {
                     "name": "",
-                    "id": "7477068e-f019-4cfa-82ba-8b6882dc0b5a",
-                    "path": "<Keyboard>/s",
+                    "id": "5a682fae-29ad-435e-8d77-8a18ae71c663",
+                    "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -103,12 +137,23 @@
                 },
                 {
                     "name": "",
-                    "id": "5a682fae-29ad-435e-8d77-8a18ae71c663",
-                    "path": "<Keyboard>/x",
+                    "id": "e999b7cf-317e-4f96-92c1-896325ed6d07",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack",
+                    "action": "Cast",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca9f7742-c8ec-4a1c-8eaf-146403d25c6f",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rebirth",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

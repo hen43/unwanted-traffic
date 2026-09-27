@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour, AnimationReceiver
         {
             distanceTracker = FindAnyObjectByType<Distance>();
             distance = distanceTracker.dist;
-            Debug.Log($"spawned with multiplier {1 + distance * scaling}");
+            // Debug.Log($"spawned with multiplier {1 + distance * scaling}");
         }
 
         if (enemyData != null)
@@ -205,7 +205,7 @@ public class Enemy : MonoBehaviour, AnimationReceiver
                 Collider2D hitPlayer = Physics2D.OverlapCircle(attackOrigin.position, attackRadius, playerLayer);
                 if (hitPlayer != null)
                 {
-                    currencyHandler?.ChangeBlood(Mathf.FloorToInt(damage * -1));
+                    currencyHandler?.ChangeBlood(Mathf.FloorToInt(damage * -1), false);
                     cam.Shake(0.2f);
                 }
             }
@@ -301,7 +301,7 @@ public class Enemy : MonoBehaviour, AnimationReceiver
         {
             float cash = enemyData.cashDrop * (1 + distance * scaling * 0.5f);
             int bloodAmt = Mathf.FloorToInt(cash + Random.Range(-(cash*0.25f), (cash*0.25f)));
-            currencyHandler?.ChangeBlood(bloodAmt);
+            currencyHandler?.ChangeBlood(bloodAmt, false);
             
             StartCoroutine(DeathSequence(0.5f, 0f));
         }

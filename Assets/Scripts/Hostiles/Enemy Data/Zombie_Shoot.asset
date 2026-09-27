@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: Zombie_Shoot
   prefab: {fileID: 8695384395114547370, guid: e50c40ec074f7a24ab9464dd7a29daed, type: 3}
   weight: 15
-  health: 50
+  health: 35
   damage: 20
   speed: 6
   cashDrop: 75

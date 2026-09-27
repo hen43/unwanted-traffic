@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
         {
             // Debug.Log("hit the player");
 
-            currencyHandler?.ChangeBlood(damage * -1);
+            currencyHandler?.ChangeBlood(damage * -1, false);
             cam.Shake(0.2f);
 
             Destroy(gameObject);

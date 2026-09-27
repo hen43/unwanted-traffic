@@ -137,7 +137,7 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
                     if(Spend(cost)){currentUpgrade[upgrade]++;};
                     break;
                 case(Upgrade.Ability):
-                    if(GetUpgradeCount(Upgrade.Ability) < 4)
+                    if(GetUpgradeCount(Upgrade.Ability) < 3)
                     {
                         cost = 1000 + (1000 * GetUpgradeCount(Upgrade.Ability));
                         if(Spend(cost)){currentUpgrade[upgrade]++;};
@@ -228,9 +228,9 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
         }
         return "" + 
         $"Unlocks a new ability.\n\n" + 
-        $"Current: {abil}/4\n" +
+        $"Current: {abil}/3\n" +
         $"Cost: {FormatCost(cost)}\n\n" + 
-        "REVENGE upgrades are unlocked at MAX Ability Upgrades.";
+        "Ability damage multiplies with each upgrade, plus the player's melee damage.\n\n" + 
     }
 
     private string FormatCost(int cost)

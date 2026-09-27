@@ -52,6 +52,14 @@ public class GameManager : MonoBehaviour
         SetGameState(GameState.Shop);
     }
 
+    public void OnRebirth()
+    {
+        // for player input instead of click
+        Debug.Log("attempted to rebirth");
+        Map.ResetMap();
+        SetGameState(GameState.Shop);
+    }
+
     public void ExitShop()
     {
         SetGameState(GameState.Play);

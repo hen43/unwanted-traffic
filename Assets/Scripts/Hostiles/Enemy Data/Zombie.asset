@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: Zombie
   prefab: {fileID: 8695384395114547370, guid: 91b65998fea03d04490e95aabe8385d5, type: 3}
   weight: 20
-  health: 25
+  health: 20
   damage: 20
   speed: 8
   cashDrop: 20
