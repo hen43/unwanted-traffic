@@ -1,0 +1,53 @@
+{
+    "version": 1,
+    "name": "UI Input",
+    "maps": [
+        {
+            "name": "UI",
+            "id": "23c56185-0ecc-4c30-816e-46d39349f2bc",
+            "actions": [
+                {
+                    "name": "Rebirth",
+                    "type": "Button",
+                    "id": "366e5bef-c321-4b9c-b6d4-815bfade3a3a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ca9f7742-c8ec-4a1c-8eaf-146403d25c6f",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rebirth",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Keyboard&Mouse",
+            "bindingGroup": "Keyboard&Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

@@ -27,6 +27,16 @@ public class GameManager : MonoBehaviour
     public static event Action<PlayerState> PlayerStateChanged;
     public static event Action HideTooltip;
 
+    void OnEnable()
+    {
+        Player.AttemptRebirth += OnRebirth;
+    }
+
+    void OnDisable()
+    {
+        Player.AttemptRebirth -= OnRebirth;
+    }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -55,7 +65,7 @@ public class GameManager : MonoBehaviour
     public void OnRebirth()
     {
         // for player input instead of click
-        Debug.Log("attempted to rebirth");
+        // Debug.Log("attempted to rebirth");
         Map.ResetMap();
         SetGameState(GameState.Shop);
     }

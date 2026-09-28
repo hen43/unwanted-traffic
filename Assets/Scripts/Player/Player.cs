@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     public static Player Instance { get; private set; }
     private DebugInputs debugInputs;
 
+    public static System.Action AttemptRebirth;
+
     void Awake()
     {
         // note to self: awake occurs before start
@@ -24,6 +26,12 @@ public class Player : MonoBehaviour
     // void Start()
     // {
     // }
+
+    void OnRebirth()
+    {
+        AttemptRebirth?.Invoke();
+        // print("attempted to rebirth");
+    }
 
     void OnEnable()
     {

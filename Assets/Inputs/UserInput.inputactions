@@ -49,7 +49,7 @@
                 {
                     "name": "Rebirth",
                     "type": "Button",
-                    "id": "366e5bef-c321-4b9c-b6d4-815bfade3a3a",
+                    "id": "c414b1fd-2069-4d1c-9c3d-e513ad22a3c9",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -148,7 +148,7 @@
                 },
                 {
                     "name": "",
-                    "id": "ca9f7742-c8ec-4a1c-8eaf-146403d25c6f",
+                    "id": "a35ec27f-597e-451d-8226-465bf8f3430c",
                     "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",

@@ -42,7 +42,7 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        Debug.Log($"hit {other.name}");
+        // Debug.Log($"hit {other.name}");
         return;
     }
 }

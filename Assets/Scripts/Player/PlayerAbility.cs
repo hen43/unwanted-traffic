@@ -70,7 +70,7 @@ public class PlayerAbility : MonoBehaviour
             if (enemyComponent != null)
             {        
                 float meleeDamage = playerStats.getDefaultStat(PlayerStats.Stat.Damage) + (10 * shopHandler.GetUpgradeCount(ShopHandler.Upgrade.Damage));
-                float abilityDamage = (damageScaling * shopHandler.GetUpgradeCount(ShopHandler.Upgrade.Ability)) + ;
+                float abilityDamage = (damageScaling * shopHandler.GetUpgradeCount(ShopHandler.Upgrade.Ability));
                 float finalDamage = meleeDamage + abilityDamage;
 
                 enemyComponent.TakeDamage(Mathf.FloorToInt(finalDamage));

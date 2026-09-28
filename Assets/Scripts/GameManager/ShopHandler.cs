@@ -9,7 +9,7 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
     [SerializeField] private PlayerStats playerStats;
     private Player player;
 
-    public static System.Action<string> OnUpgradePurchased;
+    public static System.Action<Upgrade> OnUpgradePurchased;
 
     public enum Upgrade
     {
@@ -123,6 +123,7 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
 
     private void UpgradeItem(Upgrade upgrade)
     {
+        bool purchased = false;
         if (currentUpgrade.ContainsKey(upgrade))
         {
             int cost;
@@ -130,17 +131,26 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
             {
                 case(Upgrade.Damage):
                     cost = 300 + (200 * GetUpgradeCount(Upgrade.Damage));
-                    if(Spend(cost)){currentUpgrade[upgrade]++;};
+                    if(Spend(cost)){
+                        currentUpgrade[upgrade]++;
+                        purchased = true;
+                    };
                     break;
                 case(Upgrade.Speed):
                     cost = 500 + (250 * GetUpgradeCount(Upgrade.Speed));
-                    if(Spend(cost)){currentUpgrade[upgrade]++;};
+                    if(Spend(cost)){
+                        currentUpgrade[upgrade]++;
+                        purchased = true;
+                    };
                     break;
                 case(Upgrade.Ability):
                     if(GetUpgradeCount(Upgrade.Ability) < 3)
                     {
                         cost = 1000 + (1000 * GetUpgradeCount(Upgrade.Ability));
-                        if(Spend(cost)){currentUpgrade[upgrade]++;};
+                        if(Spend(cost)){
+                            currentUpgrade[upgrade]++;
+                            purchased = true;
+                        };
                     }
                     break;  
             }
@@ -152,7 +162,11 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
 
         SaveMultipliers();
         
-        OnUpgradePurchased?.Invoke(upgrade.ToString());
+        if(purchased == true)
+        {
+            OnUpgradePurchased?.Invoke(upgrade);
+            purchased = false;
+        }
 
         TooltipSystem.Show(GetContent(upgrade.ToString()), GetHeader(upgrade.ToString()));
     }
@@ -230,7 +244,7 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
         $"Unlocks a new ability.\n\n" + 
         $"Current: {abil}/3\n" +
         $"Cost: {FormatCost(cost)}\n\n" + 
-        "Ability damage multiplies with each upgrade, plus the player's melee damage.\n\n" + 
+        "Ability damage multiplies with each upgrade, plus the player's melee damage."; 
     }
 
     private string FormatCost(int cost)
