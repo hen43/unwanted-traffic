@@ -1,0 +1,574 @@
+fileFormatVersion: 2
+guid: 2f968fc368670e142a1da82f239d341d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5066241825489289810
+    second: everythingcostsblood_0
+  - first:
+      213: 6812747166132791494
+    second: everythingcostsblood_1
+  - first:
+      213: -2810836891268761450
+    second: everythingcostsblood_2
+  - first:
+      213: -7942547262996886920
+    second: everythingcostsblood_3
+  - first:
+      213: -4230276409913533149
+    second: everythingcostsblood_4
+  - first:
+      213: 403822493170212352
+    second: everythingcostsblood_5
+  - first:
+      213: 2274052195269119488
+    second: everythingcostsblood_6
+  - first:
+      213: -5757503495230443793
+    second: everythingcostsblood_7
+  - first:
+      213: -4793858930554998248
+    second: everythingcostsblood_8
+  - first:
+      213: -9187211501298544547
+    second: everythingcostsblood_9
+  - first:
+      213: -2254238466289035279
+    second: everythingcostsblood_10
+  - first:
+      213: -6712471659920560
+    second: everythingcostsblood_11
+  - first:
+      213: -4086775572299607331
+    second: everythingcostsblood_12
+  - first:
+      213: 7468250455831487348
+    second: everythingcostsblood_13
+  - first:
+      213: -771097684713071269
+    second: everythingcostsblood_14
+  - first:
+      213: -5364412736842363761
+    second: everythingcostsblood_15
+  - first:
+      213: -7767707741260696962
+    second: everythingcostsblood_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: everythingcostsblood_0
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 564
+        width: 94
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25204822918ee4640800000000000000
+      internalID: 5066241825489289810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: everythingcostsblood_1
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 553
+        width: 71
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c8e4edb37dbb8e50800000000000000
+      internalID: 6812747166132791494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: everythingcostsblood_2
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 551
+        width: 67
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 698bc566db6edf8d0800000000000000
+      internalID: -2810836891268761450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: everythingcostsblood_3
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 472
+        width: 123
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87ac151885766c190800000000000000
+      internalID: -7942547262996886920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: everythingcostsblood_4
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 531
+        width: 122
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32d9365a40a0b45c0800000000000000
+      internalID: -4230276409913533149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: everythingcostsblood_5
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 620
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00e19b10b6aaa9500800000000000000
+      internalID: 403822493170212352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: everythingcostsblood_6
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 433
+        width: 134
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00e86b35c6e0f8f10800000000000000
+      internalID: 2274052195269119488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: everythingcostsblood_7
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 526
+        width: 21
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fee28bd531d3910b0800000000000000
+      internalID: -5757503495230443793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: everythingcostsblood_8
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 338
+        width: 146
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8127fec93bac87db0800000000000000
+      internalID: -4793858930554998248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: everythingcostsblood_9
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 378
+        width: 68
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5097b4c0d7708080800000000000000
+      internalID: -9187211501298544547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: everythingcostsblood_10
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 383
+        width: 71
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f712d1fe0657b0e0800000000000000
+      internalID: -2254238466289035279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: everythingcostsblood_11
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 385
+        width: 60
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0534527ea0728eff0800000000000000
+      internalID: -6712471659920560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: everythingcostsblood_12
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 110
+        width: 105
+        height: 213
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd29658054bd847c0800000000000000
+      internalID: -4086775572299607331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: everythingcostsblood_13
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 80
+        width: 122
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4732c79983e84a760800000000000000
+      internalID: 7468250455831487348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: everythingcostsblood_14
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 132
+        width: 98
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5d1d8fbdb28c45f0800000000000000
+      internalID: -771097684713071269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: everythingcostsblood_15
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 96
+        width: 109
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8c0ee7a907cd85b0800000000000000
+      internalID: -5364412736842363761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: everythingcostsblood_16
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 84
+        width: 92
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e72ba13e6fe833490800000000000000
+      internalID: -7767707741260696962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      everythingcostsblood_0: 5066241825489289810
+      everythingcostsblood_1: 6812747166132791494
+      everythingcostsblood_10: -2254238466289035279
+      everythingcostsblood_11: -6712471659920560
+      everythingcostsblood_12: -4086775572299607331
+      everythingcostsblood_13: 7468250455831487348
+      everythingcostsblood_14: -771097684713071269
+      everythingcostsblood_15: -5364412736842363761
+      everythingcostsblood_16: -7767707741260696962
+      everythingcostsblood_2: -2810836891268761450
+      everythingcostsblood_3: -7942547262996886920
+      everythingcostsblood_4: -4230276409913533149
+      everythingcostsblood_5: 403822493170212352
+      everythingcostsblood_6: 2274052195269119488
+      everythingcostsblood_7: -5757503495230443793
+      everythingcostsblood_8: -4793858930554998248
+      everythingcostsblood_9: -9187211501298544547
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

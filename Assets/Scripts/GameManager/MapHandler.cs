@@ -16,7 +16,7 @@ public class MapHandler : MonoBehaviour
     public List<EnemyData> enemyTypes;
 
     [Header("Map Settings")]
-    public int TotalGroundTiles = 200;
+    public int TotalGroundTiles = 210;
     public int spacing = 40;
     private Vector3 initPos = new Vector3(6, 0, 0);
 

@@ -3,7 +3,7 @@ using UnityEngine;
 public class HordeSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject hordePrefab;
-    [SerializeField] private float initXOffset = 10f;
+    [SerializeField] private float initXOffset = 25f;
     [SerializeField] private float initYOffset = 10f;
     [SerializeField] private float initSpeed = 5f;
 

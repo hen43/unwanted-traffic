@@ -1,9 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerCombat : MonoBehaviour
 {
     public Transform attackPoint;
+    public Transform attackPoint_up;
+    public Transform attackPoint_down;
     public LayerMask enemyLayers;
     public Animator animator;
     private PlayerMovement playerMovement;
@@ -14,6 +17,8 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private CurrencyHandler currencyHandler;    
 
     public Vector2 attackBox;
+    public Vector2 attackBox_alt;
+    public Vector3 vectorShift;
     private float attackCooldown = 0f;
     private float moveX;
     private float moveY;
@@ -21,6 +26,12 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private GameObject[] abilityList;
 
     public SpriteRenderer attackEffect;
+    public SpriteRenderer attackEffect_up;
+    public SpriteRenderer attackEffect_down;
+
+    float finalDamage;
+
+    private SpriteRenderer activeEffect;
 
     public enum AbilityType
     {
@@ -29,7 +40,6 @@ public class PlayerCombat : MonoBehaviour
         Back
     }
 
-    // for ability transposition
     [SerializeField] private float forwardShift;
     [SerializeField] private float downShift;
     [SerializeField] private float backShift;
@@ -39,10 +49,7 @@ public class PlayerCombat : MonoBehaviour
         playerMovement = GetComponentInParent<PlayerMovement>();
         cam = CameraMovement.instance;
 
-        if (attackEffect != null)
-        {
-            attackEffect.enabled = false;
-        }
+        DisableAllEffects();
 
         if (playerStats == null)
         {
@@ -80,6 +87,9 @@ public class PlayerCombat : MonoBehaviour
         {
             attackCooldown -= Time.deltaTime;
         }
+
+        moveX = playerMovement.moveX;
+        moveY = playerMovement.moveY;
     }
 
     void OnAttack()
@@ -93,23 +103,60 @@ public class PlayerCombat : MonoBehaviour
             {
                 animator.SetTrigger("attack");
             }
-            if (attackEffect != null)
+
+            DisableAllEffects();
+
+            activeEffect = GetEffectForDirection();
+            if (activeEffect != null)
             {
-                attackEffect.enabled = true;
+                activeEffect.enabled = true;
             }
         }
     }
 
+    private SpriteRenderer GetEffectForDirection()
+    {
+        if (moveY == 1) return attackEffect_up;
+        if (moveY == -1) return attackEffect_down;
+        return attackEffect;
+    }
+
+    private void DisableAllEffects()
+    {
+        if (attackEffect != null) attackEffect.enabled = false;
+        if (attackEffect_up != null) attackEffect_up.enabled = false;
+        if (attackEffect_down != null) attackEffect_down.enabled = false;
+        activeEffect = null;
+    }
+
     public void Attack()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackPoint.position, attackBox, 0f, enemyLayers);
+        Collider2D[] hitEnemies;
+
+        if(moveY == 1)
+        {
+            hitEnemies = Physics2D.OverlapBoxAll(attackPoint_up.position, attackBox_alt, 0f, enemyLayers);
+        }
+        else if (moveY == -1)
+        {
+            hitEnemies = Physics2D.OverlapBoxAll(attackPoint_down.position, attackBox_alt, 0f, enemyLayers);
+        } 
+        else 
+        {
+            hitEnemies = Physics2D.OverlapBoxAll(attackPoint.position, attackBox, 0f, enemyLayers);
+        }
 
         if (hitEnemies.Length > 0 && cam != null)
         {
             cam.Shake(0.2f);
         }
 
-        float finalDamage = playerStats.getDefaultStat(PlayerStats.Stat.Damage) + (10 * shopHandler.GetUpgradeCount(ShopHandler.Upgrade.Damage));
+        finalDamage = 1f;
+        if (SceneManager.GetActiveScene().name != "Tutorial")
+        {
+            finalDamage = playerStats.getDefaultStat(PlayerStats.Stat.Damage) + (10 * shopHandler.GetUpgradeCount(ShopHandler.Upgrade.Damage));
+        }
+
         bool isRevenge = GameManager.Instance != null && GameManager.Instance.CurrentPlayerState == GameManager.PlayerState.Revenge;
 
         if (isRevenge && playerStats != null)
@@ -123,11 +170,9 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-
             if(enemy.CompareTag("Bullet"))
             {
-                // call this a parry later and give it effects
-                Debug.Log("broke bullet i think");
+                // Debug.Log("broke bullet i think");
                 Destroy(enemy.gameObject);
             }
 
@@ -135,40 +180,37 @@ public class PlayerCombat : MonoBehaviour
             if (enemyComponent != null)
             {
                 enemyComponent.TakeDamage(calculatedDmg);
-                // Debug.Log($"DAMAGE: {calculatedDmg} with {shopHandler.GetUpgradeCount(ShopHandler.Upgrade.Damage)} upgrades");
             }
         }
 
-        if (attackEffect != null)
+        if (activeEffect != null)
         {
-            attackEffect.enabled = false;
+            activeEffect.enabled = false;
+            activeEffect = null;
         }
     }
 
     public void OnCast()
     {
-        moveX = playerMovement.moveX;
-        moveY = playerMovement.moveY;
-        // Debug.Log($"CASTED with x {moveX} and y {moveY}");
-
-        if(moveY == -1)
+        if (SceneManager.GetActiveScene().name != "Tutorial")
         {
-            Ability(AbilityType.Down);
+            if(moveY == -1)
+            {
+                Ability(AbilityType.Down);
+                return;
+            }
+            if(moveX == -1)
+            {
+                Ability(AbilityType.Back);
+                return;
+            }
+            Ability(AbilityType.Forward);
             return;
         }
-        if(moveX == -1)
-        {
-            Ability(AbilityType.Back);
-            return;
-        }
-        Ability(AbilityType.Forward);
-        return;
     }
 
     private void Ability(AbilityType type)
     {
-        // Debug.Log($"CASTED as {type}");
-
         int blood = currencyHandler.GetBlood(); 
 
         switch(type)
@@ -183,8 +225,8 @@ public class PlayerCombat : MonoBehaviour
                 break;
             case AbilityType.Down:
                 if(shopHandler.GetUpgradeCount(ShopHandler.Upgrade.Ability) >= 2){
-                    if(blood >= 250) {
-                        currencyHandler.ChangeBlood(-250, true);
+                    if(blood >= 500) {
+                        currencyHandler.ChangeBlood(-500, true);
                         AbilityDown();
                     }
                 }
@@ -227,7 +269,12 @@ public class PlayerCombat : MonoBehaviour
     {
         if (attackPoint == null) return;
 
+        Vector3 shift = vectorShift;
+        Vector3 shift2 = new Vector3(shift.x, shift.y * -1, shift.z);
+
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(attackPoint.position, attackBox);
+        Gizmos.DrawWireCube(attackPoint.position + shift, attackBox_alt);
+        Gizmos.DrawWireCube(attackPoint.position + shift2, attackBox_alt);
     }
 }

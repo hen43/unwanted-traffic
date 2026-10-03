@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class AbilityHelper : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class AbilityHelper : MonoBehaviour
     private float timer;
 
     [SerializeField] private Animator animator;
+
+    private bool isActive = false;
 
     public void Hide() => canvas.enabled = false;
     public void Show(){
@@ -39,6 +42,16 @@ public class AbilityHelper : MonoBehaviour
         Hide();
     }
 
+    public bool IsActive()
+    {
+        return isActive;
+    }
+
+    private void EndOfAnim()
+    {
+        isActive = false;
+    }
+
     private void Upgraded(ShopHandler.Upgrade upg)
     {
         if(upg == ShopHandler.Upgrade.Ability)
@@ -46,6 +59,7 @@ public class AbilityHelper : MonoBehaviour
             // Debug.Log("ABILITY UPGRADED");
             Show();
             PlayAnimation();
+            isActive = true;
         } else {
             // Debug.Log("Huhhh...");
         }
@@ -65,6 +79,7 @@ public class AbilityHelper : MonoBehaviour
             timer -= Time.unscaledDeltaTime;
         } else {
             Hide();
+            EndOfAnim();
         }
     }
 }

@@ -16,15 +16,23 @@ public class Tooltip : MonoBehaviour
     public float edgeThreshold = 50f;
     public Vector2 tooltipOffset = new Vector2(10f, -10f);
 
+    private AbilityHelper abilityHelper;
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+        GameObject abilityHelperParent = GameObject.Find("AbilityHelper");
+        abilityHelper = abilityHelperParent.GetComponent<AbilityHelper>();
+        if(abilityHelper == null)
+        {
+            Debug.Log("couldn't find ability helper");
+        }
     }
 
     private void OnEnable()
     {
         GameManager.HideTooltip += HideTooltip;
-    }
+    } 
 
     private void OnDisable()
     {
@@ -50,7 +58,6 @@ public class Tooltip : MonoBehaviour
 
         contentField.text = content;
 
-        // Dynamic wrap checking
         int headerLength = string.IsNullOrEmpty(header) ? 0 : header.Length;
         int contentLength = string.IsNullOrEmpty(content) ? 0 : content.Length;
 
@@ -62,14 +69,23 @@ public class Tooltip : MonoBehaviour
 
     private void Update()
     {
-        if (Mouse.current != null)
+        if(abilityHelper.IsActive() == true)
         {
-            Vector2 mousePosition = Mouse.current.position.ReadValue();
-            Vector2 pivot = CalculatePivotWithEdgeDetection(mousePosition);
-            rectTransform.pivot = pivot;
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(true);
 
-            Vector2 tooltipPosition = mousePosition + tooltipOffset;
-            transform.position = tooltipPosition;
+            if (Mouse.current != null)
+            {
+                Vector2 mousePosition = Mouse.current.position.ReadValue();
+                Vector2 pivot = CalculatePivotWithEdgeDetection(mousePosition);
+                rectTransform.pivot = pivot;
+
+                Vector2 tooltipPosition = mousePosition + tooltipOffset;
+                transform.position = tooltipPosition;
+            }
         }
     }
 

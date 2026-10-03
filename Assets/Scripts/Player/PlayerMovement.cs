@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -102,16 +103,21 @@ public class PlayerMovement : MonoBehaviour
     {
         if (transform.position.y < -30)
         {
-            rb.linearVelocity = Vector2.zero;
-            rb.angularVelocity = 0f;
-            
-            xVel = 0f;
-            yVel = 0f;
-
-            MapHandler mapHandler = Object.FindAnyObjectByType<MapHandler>();
-            if (mapHandler != null)
+            if(SceneManager.GetActiveScene().name != "Tutorial")
             {
-                mapHandler.ResetMap();
+                rb.linearVelocity = Vector2.zero;
+                rb.angularVelocity = 0f;
+                
+                xVel = 0f;
+                yVel = 0f;
+
+                MapHandler mapHandler = Object.FindAnyObjectByType<MapHandler>();
+                if (mapHandler != null)
+                {
+                    mapHandler.ResetMap();
+                }
+            } else {
+                SceneManager.LoadScene("Main Game");
             }
         }
     }

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.coffee.ui-particle": "https://github.com/mob-sakai/ParticleEffectForUGUI.git",
     "com.daniel-geo.unityhackatime": "https://github.com/daniel-geo/unity-hackatime.git#package",
     "com.unity.2d.animation": "16.0.0",
     "com.unity.2d.aseprite": "6.0.0",

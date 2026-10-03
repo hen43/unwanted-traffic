@@ -18,5 +18,5 @@ MonoBehaviour:
   health: 100
   damage: 50
   speed: 4
-  cashDrop: 150
+  cashDrop: 225
   aiType: 0

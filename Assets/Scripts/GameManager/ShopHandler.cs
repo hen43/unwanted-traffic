@@ -146,7 +146,7 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
                 case(Upgrade.Ability):
                     if(GetUpgradeCount(Upgrade.Ability) < 3)
                     {
-                        cost = 1000 + (1000 * GetUpgradeCount(Upgrade.Ability));
+                        cost = 1000 + (2000 * GetUpgradeCount(Upgrade.Ability));
                         if(Spend(cost)){
                             currentUpgrade[upgrade]++;
                             purchased = true;
@@ -225,10 +225,10 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
 
     public string SpeedContent()
     {
-        float spd = playerStats.getDefaultStat(PlayerStats.Stat.Speed) + (5 * GetUpgradeCount(Upgrade.Speed));
+        float spd = playerStats.getDefaultStat(PlayerStats.Stat.Speed) + (10 * GetUpgradeCount(Upgrade.Speed));
         int cost = 500 + (250 * GetUpgradeCount(Upgrade.Speed));
         return "" + 
-        $"Upgrades your speed by 5 for every upgrade.\n\n" + 
+        $"Upgrades your speed by 10 for every upgrade.\n\n" + 
         $"Current: {spd}\n" +
         $"Cost: {FormatCost(cost)}";
     }
@@ -236,7 +236,7 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
     public string AbilityContent()
     {
         float abil = GetUpgradeCount(Upgrade.Ability);
-        int cost = 1000 + (1000 * (int)abil);
+        int cost = 1000 + (2000 * (int)abil);
         if(abil >= 3){
             cost = 9999999;
         }

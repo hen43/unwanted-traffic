@@ -13,9 +13,16 @@ public class Distance : MonoBehaviour
 
     public float dist { get; private set; }
 
+    private Navigator navigator;
+
     void Start()
     {
         TryFindPlayer();
+        
+        if(navigator == null)
+        {
+            navigator = FindAnyObjectByType<Navigator>();
+        }
     }
 
     void OnEnable()
@@ -51,6 +58,8 @@ public class Distance : MonoBehaviour
             dist = Mathf.FloorToInt(player.transform.position.x - startingX);
             distanceText.text = $"Distance: {dist}m";
         }
+
+        WinCheck();
     }
 
     private void TryFindPlayer()
@@ -60,6 +69,14 @@ public class Distance : MonoBehaviour
         {
             startingX = player.transform.position.x;
             initializedBaseline = true;
+        }
+    }
+
+    private void WinCheck()
+    {
+        if(dist > 2000f)
+        {
+            navigator.ChangeScene("Ending");
         }
     }
 }

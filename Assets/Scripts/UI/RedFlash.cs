@@ -39,6 +39,11 @@ public class RedFlash : MonoBehaviour
         image.color = new Color(1.0f, 0.0f, 0.0f, 0.0f);
     }
 
+    public void UIFlash()
+    {
+        image.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+    }
+
     private void RedFlashEffect(int current, int max, int deltaBlood)
     {
         if (deltaBlood < 0)
@@ -73,7 +78,7 @@ public class RedFlash : MonoBehaviour
 
         if (!Mathf.Approximately(image.color.a, targetAlpha))
         {
-            float newAlpha = Mathf.MoveTowards(image.color.a, targetAlpha, flashDecaySpeed * Time.deltaTime);
+            float newAlpha = Mathf.MoveTowards(image.color.a, targetAlpha, flashDecaySpeed * Time.unscaledDeltaTime);
             image.color = new Color(1.0f, 0.0f, 0.0f, newAlpha);
         }
     }

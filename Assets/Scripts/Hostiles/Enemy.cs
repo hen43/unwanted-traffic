@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class Enemy : MonoBehaviour, AnimationReceiver
@@ -53,11 +54,14 @@ public class Enemy : MonoBehaviour, AnimationReceiver
         cam = CameraMovement.instance;
         rb = GetComponent<Rigidbody2D>();
         
-        if (distanceTracker == null)
+        if (SceneManager.GetActiveScene().name != "Tutorial")
         {
-            distanceTracker = FindAnyObjectByType<Distance>();
-            distance = distanceTracker.dist;
-            // Debug.Log($"spawned with multiplier {1 + distance * scaling}");
+            if (distanceTracker == null)
+            {
+                distanceTracker = FindAnyObjectByType<Distance>();
+                distance = distanceTracker.dist;
+                // Debug.Log($"spawned with multiplier {1 + distance * scaling}");
+            }
         }
 
         if (enemyData != null)
