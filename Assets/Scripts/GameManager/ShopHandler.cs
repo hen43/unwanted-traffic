@@ -10,6 +10,8 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
     private Player player;
 
     public static System.Action<Upgrade> OnUpgradePurchased;
+    public bool canBuyDamage;
+    public bool canBuySpeed;
 
     public enum Upgrade
     {
@@ -127,11 +129,14 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
         if (currentUpgrade.ContainsKey(upgrade))
         {
             int cost;
+            canBuyDamage = false;
+            canBuySpeed = false;
             switch(upgrade)
             {
                 case(Upgrade.Damage):
                     cost = 300 + (200 * GetUpgradeCount(Upgrade.Damage));
                     if(Spend(cost)){
+                        canBuyDamage = true;
                         currentUpgrade[upgrade]++;
                         purchased = true;
                     };
@@ -139,6 +144,7 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
                 case(Upgrade.Speed):
                     cost = 500 + (250 * GetUpgradeCount(Upgrade.Speed));
                     if(Spend(cost)){
+                        canBuySpeed = true;
                         currentUpgrade[upgrade]++;
                         purchased = true;
                     };

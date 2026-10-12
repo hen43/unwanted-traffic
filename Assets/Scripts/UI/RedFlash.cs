@@ -11,6 +11,8 @@ public class RedFlash : MonoBehaviour
     [Header("Revenge Mode Settings")]
     [SerializeField] private float revengeBaseAlpha = 0.4f;
 
+    private ShopHandler shopHandler;
+
     private Image image;
 
     private void Awake()
@@ -36,12 +38,20 @@ public class RedFlash : MonoBehaviour
 
     private void Start()
     {
-        image.color = new Color(1.0f, 0.0f, 0.0f, 0.0f);
+        image.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+
+        if (shopHandler == null)
+        {
+            shopHandler = FindAnyObjectByType<ShopHandler>();
+        }
     }
 
     public void UIFlash()
     {
-        image.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+        if(shopHandler.canBuyDamage || shopHandler.canBuySpeed)
+        {
+            image.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+        }
     }
 
     private void RedFlashEffect(int current, int max, int deltaBlood)
