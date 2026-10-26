@@ -134,7 +134,7 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
             switch(upgrade)
             {
                 case(Upgrade.Damage):
-                    cost = 300 + (200 * GetUpgradeCount(Upgrade.Damage));
+                    cost = 150 + (100 * GetUpgradeCount(Upgrade.Damage));
                     if(Spend(cost)){
                         canBuyDamage = true;
                         currentUpgrade[upgrade]++;
@@ -142,7 +142,7 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
                     };
                     break;
                 case(Upgrade.Speed):
-                    cost = 500 + (250 * GetUpgradeCount(Upgrade.Speed));
+                    cost = 250 + (125 * GetUpgradeCount(Upgrade.Speed));
                     if(Spend(cost)){
                         canBuySpeed = true;
                         currentUpgrade[upgrade]++;

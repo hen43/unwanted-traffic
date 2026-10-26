@@ -28,6 +28,8 @@ public class PlayerCombat : MonoBehaviour
     public SpriteRenderer attackEffect;
     public SpriteRenderer attackEffect_up;
     public SpriteRenderer attackEffect_down;
+    private int atk_count = 0;
+    private bool atk_alt = false;
 
     float finalDamage;
 
@@ -103,14 +105,6 @@ public class PlayerCombat : MonoBehaviour
             {
                 animator.SetTrigger("attack");
             }
-
-            DisableAllEffects();
-
-            activeEffect = GetEffectForDirection();
-            if (activeEffect != null)
-            {
-                activeEffect.enabled = true;
-            }
         }
     }
 
@@ -131,6 +125,18 @@ public class PlayerCombat : MonoBehaviour
 
     public void Attack()
     {
+        atk_count++;
+        atk_alt = (atk_count % 2 == 0) ? true : false;
+        animator.SetBool("atk_alt", atk_alt);
+
+        DisableAllEffects();
+
+        activeEffect = GetEffectForDirection();
+        if (activeEffect != null)
+        {
+            activeEffect.enabled = true;
+        }
+        
         Collider2D[] hitEnemies;
 
         if(moveY == 1)
@@ -183,6 +189,14 @@ public class PlayerCombat : MonoBehaviour
             }
         }
 
+        if (activeEffect != null)
+        {
+            Invoke(nameof(HideActiveEffect), 0.04f);
+        }
+    }
+
+    private void HideActiveEffect()
+    {
         if (activeEffect != null)
         {
             activeEffect.enabled = false;

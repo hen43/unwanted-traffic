@@ -80,32 +80,12 @@ public class Tooltip : MonoBehaviour
             if (Mouse.current != null)
             {
                 Vector2 mousePosition = Mouse.current.position.ReadValue();
-                Vector2 pivot = CalculatePivotWithEdgeDetection(mousePosition);
+                Vector2 pivot = new Vector2(0f, 0f);
                 rectTransform.pivot = pivot;
 
                 Vector2 tooltipPosition = mousePosition + tooltipOffset;
                 transform.position = tooltipPosition;
             }
         }
-    }
-
-    private Vector2 CalculatePivotWithEdgeDetection(Vector2 mousePosition)
-    {
-        Vector2 pivot = new Vector2(0f, 1f);
-
-        float distanceFromRight = Screen.width - mousePosition.x;
-        float distanceFromBottom = mousePosition.y;
-
-        if (distanceFromRight < edgeThreshold)
-        {
-            pivot.x = 1f;
-        }
-
-        if (distanceFromBottom < edgeThreshold)
-        {
-            pivot.y = 0f;
-        }
-
-        return pivot;
     }
 }
