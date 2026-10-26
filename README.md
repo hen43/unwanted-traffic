@@ -1,3 +1,3 @@
 'unwanted traffic' is a hack-and-slash / platformer game.
 
-Claude was sometimes used to debug.
+Google Gemini sometimes used to debug and generate code. It is not involved in the creation of any assets, music, or writing.
