@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
     {
         CurrentState = GameState.Play;
         CurrentPlayerState = PlayerState.Normal;
+        OnStateChanged.Invoke(GameState.Play);
     }
 
     public void Rebirth()

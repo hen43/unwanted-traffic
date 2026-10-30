@@ -1,0 +1,444 @@
+fileFormatVersion: 2
+guid: 3d3195b3cdef41c48b00f4723f585dca
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5919868171782655011
+    second: cone_ss 1_0
+  - first:
+      213: 6162533402090090579
+    second: cone_ss 1_1
+  - first:
+      213: -8006733403076068735
+    second: cone_ss 1_2
+  - first:
+      213: -5776377680599556688
+    second: cone_ss 1_3
+  - first:
+      213: 7167305779845679686
+    second: cone_ss 1_4
+  - first:
+      213: 2021957336528429468
+    second: cone_ss 1_5
+  - first:
+      213: 8433681392851980257
+    second: cone_ss 1_6
+  - first:
+      213: 4311730805362481359
+    second: cone_ss 1_7
+  - first:
+      213: 2307488049610411759
+    second: cone_ss 1_8
+  - first:
+      213: 1737948293393557153
+    second: cone_ss 1_9
+  - first:
+      213: 5365322109292723491
+    second: cone_ss 1_10
+  - first:
+      213: 899764395936639892
+    second: cone_ss 1_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cone_ss 1_0
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 1437
+        width: 687
+        height: 491
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd3f0c7334768dda0800000000000000
+      internalID: -5919868171782655011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cone_ss 1_1
+      rect:
+        serializedVersion: 2
+        x: 1258
+        y: 1424
+        width: 673
+        height: 494
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3503f0c8a77b58550800000000000000
+      internalID: 6162533402090090579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cone_ss 1_2
+      rect:
+        serializedVersion: 2
+        x: 2526
+        y: 1346
+        width: 618
+        height: 522
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18a7562346e52e090800000000000000
+      internalID: -8006733403076068735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cone_ss 1_3
+      rect:
+        serializedVersion: 2
+        x: 3582
+        y: 1367
+        width: 661
+        height: 491
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bd5e53aa1f26dfa0800000000000000
+      internalID: -5776377680599556688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cone_ss 1_4
+      rect:
+        serializedVersion: 2
+        x: 4551
+        y: 1402
+        width: 719
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64a4e4cf1a2677360800000000000000
+      internalID: 7167305779845679686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cone_ss 1_5
+      rect:
+        serializedVersion: 2
+        x: 5639
+        y: 1382
+        width: 712
+        height: 546
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c91a5ca1c7f6f0c10800000000000000
+      internalID: 2021957336528429468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cone_ss 1_6
+      rect:
+        serializedVersion: 2
+        x: 6846
+        y: 1346
+        width: 618
+        height: 522
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ef83c11b847a0570800000000000000
+      internalID: 8433681392851980257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cone_ss 1_7
+      rect:
+        serializedVersion: 2
+        x: 7902
+        y: 1367
+        width: 661
+        height: 491
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc85dbca25856db30800000000000000
+      internalID: 4311730805362481359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cone_ss 1_8
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 287
+        width: 740
+        height: 539
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: feecc70d728d50020800000000000000
+      internalID: 2307488049610411759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cone_ss 1_9
+      rect:
+        serializedVersion: 2
+        x: 1354
+        y: 287
+        width: 740
+        height: 538
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a628b9c3ce6e1810800000000000000
+      internalID: 1737948293393557153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cone_ss 1_10
+      rect:
+        serializedVersion: 2
+        x: 2424
+        y: 287
+        width: 741
+        height: 531
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32d31fd1804757a40800000000000000
+      internalID: 5365322109292723491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cone_ss 1_11
+      rect:
+        serializedVersion: 2
+        x: 3504
+        y: 287
+        width: 741
+        height: 531
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49be85173fa9c7c00800000000000000
+      internalID: 899764395936639892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      cone_ss 1_0: -5919868171782655011
+      cone_ss 1_1: 6162533402090090579
+      cone_ss 1_10: 5365322109292723491
+      cone_ss 1_11: 899764395936639892
+      cone_ss 1_2: -8006733403076068735
+      cone_ss 1_3: -5776377680599556688
+      cone_ss 1_4: 7167305779845679686
+      cone_ss 1_5: 2021957336528429468
+      cone_ss 1_6: 8433681392851980257
+      cone_ss 1_7: 4311730805362481359
+      cone_ss 1_8: 2307488049610411759
+      cone_ss 1_9: 1737948293393557153
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

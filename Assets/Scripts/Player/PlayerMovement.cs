@@ -198,7 +198,7 @@ public class PlayerMovement : MonoBehaviour
         ShopHandler shopHandler = Object.FindAnyObjectByType<ShopHandler>();
         if (shopHandler != null)
         {
-            finalSpeed += (1 * shopHandler.GetUpgradeCount(ShopHandler.Upgrade.Speed));
+            finalSpeed += (5 * shopHandler.GetUpgradeCount(ShopHandler.Upgrade.Speed));
         }
 
         xVel = moveX * finalSpeed * revengeBoost;

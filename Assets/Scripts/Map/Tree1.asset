@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapObjectData
   objectID: Tree1
   objectPrefab: {fileID: 5027049607417582864, guid: 077333ea7c7d5aa4e8f5c5cb46efdeb9, type: 3}
-  spawnOffsetY: 4.7
-  weight: 40
+  spawnOffsetY: 5
+  weight: 30

@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 5ac312602f7b6994d96744b1f2165345
+guid: 55d80e57b5f50ce409e998b1f48f2bac
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8020143640844766479
-    second: spritesheet_0
-  - first:
-      213: -6251682230944352461
-    second: spritesheet_1
-  - first:
-      213: -1259408508766424310
-    second: spritesheet_2
+      213: 6685537214542931680
+    second: UT_Beginning_Comic_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -62,7 +56,9 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationMethod: 0
   spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -119,67 +115,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: zombie-atk
+      name: UT_Beginning_Comic_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 512
-        height: 512
+        width: 4961
+        height: 7016
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: abace9ce4eeac884288f9f3e72723df9
-      internalID: -305098677
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: zombie-charge
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 44bf28381c841174885c83dd3ed0af1a
-      internalID: 1925020806
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: zombie-walk
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 0
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4bda047d5b97e6849b4286323c01c16a
-      internalID: -1307920169
+      spriteID: 0e66c75dcacc7cc50800000000000000
+      internalID: 6685537214542931680
       vertices: []
       indices: 
       edges: []
@@ -188,7 +140,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a01761f1ae1df0a409a6dd5be5d51fea
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -196,13 +148,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":512.0,"y":512.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      zombie-atk: -305098677
-      zombie-charge: 1925020806
-      zombie-walk: -1307920169
+      UT_Beginning_Comic_0: 6685537214542931680
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

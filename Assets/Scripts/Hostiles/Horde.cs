@@ -10,6 +10,9 @@ public class Horde : MonoBehaviour
     private CurrencyHandler currencyHandler; 
     private CameraMovement cam;
 
+    [SerializeField] AudioClip dangerSound;
+    AudioSource audioSrc;
+
     void Start()
     {
         cam = CameraMovement.instance;
@@ -17,6 +20,10 @@ public class Horde : MonoBehaviour
         {
             currencyHandler = FindAnyObjectByType<CurrencyHandler>();
         }
+
+        audioSrc = GetComponent<AudioSource>();
+        audioSrc.clip = dangerSound;
+        audioSrc.loop = false;
     }
 
     private void OnEnable()
@@ -24,7 +31,7 @@ public class Horde : MonoBehaviour
         GameManager.PlayerStateChanged += revengeSetback;
     }
 
-    private void OnDisble()
+    private void OnDisable()
     {
         GameManager.PlayerStateChanged -= revengeSetback;
     }
@@ -46,6 +53,9 @@ public class Horde : MonoBehaviour
             stayTimer += Mathf.Pow(stayMult, Time.deltaTime);
             currencyHandler?.ChangeBlood(-1 * (1 + Mathf.FloorToInt(stayTimer)), false);
             cam.Shake(Mathf.Clamp((stayTimer * 0.1f), 0f, 1f));
+            if(!audioSrc.isPlaying){
+                audioSrc.Play();                
+            }
         }
 
         if (other.CompareTag("Enemy"))

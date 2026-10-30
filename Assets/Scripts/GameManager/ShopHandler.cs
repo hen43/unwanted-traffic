@@ -9,6 +9,8 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
     [SerializeField] private PlayerStats playerStats;
     private Player player;
 
+    [SerializeField] AudioClip buyNoise;
+
     public static System.Action<Upgrade> OnUpgradePurchased;
     public bool canBuyDamage;
     public bool canBuySpeed;
@@ -134,7 +136,7 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
             switch(upgrade)
             {
                 case(Upgrade.Damage):
-                    cost = 150 + (100 * GetUpgradeCount(Upgrade.Damage));
+                    cost = 250 + (125 * GetUpgradeCount(Upgrade.Damage));
                     if(Spend(cost)){
                         canBuyDamage = true;
                         currentUpgrade[upgrade]++;
@@ -142,7 +144,7 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
                     };
                     break;
                 case(Upgrade.Speed):
-                    cost = 250 + (125 * GetUpgradeCount(Upgrade.Speed));
+                    cost = 500 + (1000 * GetUpgradeCount(Upgrade.Speed));
                     if(Spend(cost)){
                         canBuySpeed = true;
                         currentUpgrade[upgrade]++;
@@ -171,6 +173,7 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
         if(purchased == true)
         {
             OnUpgradePurchased?.Invoke(upgrade);
+            AudioSource.PlayClipAtPoint(buyNoise, transform.position, 1.0f);
             purchased = false;
         }
 
@@ -222,7 +225,7 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
     public string DamageContent()
     {
         float dmg = playerStats.getDefaultStat(PlayerStats.Stat.Damage) + (20 * GetUpgradeCount(Upgrade.Damage));
-        int cost = 300 + (200 * GetUpgradeCount(Upgrade.Damage));
+        int cost = 250 + (125 * GetUpgradeCount(Upgrade.Damage));
         return "" + 
         $"Upgrades your damage by 20 for every upgrade.\n\n" + 
         $"Current: {dmg}\n" +
@@ -231,10 +234,10 @@ public class ShopHandler : MonoBehaviour, ITooltipDataProvider
 
     public string SpeedContent()
     {
-        float spd = playerStats.getDefaultStat(PlayerStats.Stat.Speed) + (10 * GetUpgradeCount(Upgrade.Speed));
-        int cost = 500 + (250 * GetUpgradeCount(Upgrade.Speed));
+        float spd = playerStats.getDefaultStat(PlayerStats.Stat.Speed) + (5 * GetUpgradeCount(Upgrade.Speed));
+        int cost = 500 + (1000 * GetUpgradeCount(Upgrade.Speed));
         return "" + 
-        $"Upgrades your speed by 10 for every upgrade.\n\n" + 
+        $"Upgrades your speed by 5 for every upgrade.\n\n" + 
         $"Current: {spd}\n" +
         $"Cost: {FormatCost(cost)}";
     }

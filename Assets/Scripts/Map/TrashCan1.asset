@@ -15,4 +15,4 @@ MonoBehaviour:
   objectID: TrashCan1
   objectPrefab: {fileID: 1855722376823655901, guid: fd263d416a4cf564394c94b0d00175d5, type: 3}
   spawnOffsetY: 5
-  weight: 35
+  weight: 70

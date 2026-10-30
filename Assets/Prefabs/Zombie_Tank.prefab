@@ -303,6 +303,10 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
+  bulletPrefab: {fileID: 0}
+  bullet: {fileID: 0}
+  bulletOrigin: {fileID: 0}
+  deathNoise: {fileID: 8300000, guid: bf2d1d3d7553f31449a83c8fbe76d60d, type: 3}
 --- !u!1 &8762811398043560987
 GameObject:
   m_ObjectHideFlags: 0

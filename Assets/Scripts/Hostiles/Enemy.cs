@@ -49,6 +49,10 @@ public class Enemy : MonoBehaviour, AnimationReceiver
     private float distance;
     private float scaling = 0.002f;
 
+    private Color zombieColor;
+
+    [SerializeField] AudioClip deathNoise;
+
     void Start()
     {
         cam = CameraMovement.instance;
@@ -87,12 +91,18 @@ public class Enemy : MonoBehaviour, AnimationReceiver
             currencyHandler = FindAnyObjectByType<CurrencyHandler>();
         }
 
+        currentHealth = maxHealth;
+        animator.speed = Random.Range(0.5f, 1.6f);
+        float randSize = Random.Range(0.45f, 0.55f);
+        spriteTransform.localScale = new Vector3(randSize, randSize, randSize);
+        Color zombieColor = Color.HSVToRGB(Random.Range(0f, 150f)/360f, Random.Range(0f, 60f)/100f, 1f);
+        rend.color = zombieColor;
+
         if (rend != null)
         {
             ogColor = rend.color;
         }
 
-        currentHealth = maxHealth;
     }
 
     private void Update()
@@ -284,6 +294,7 @@ public class Enemy : MonoBehaviour, AnimationReceiver
 
     private IEnumerator DeathSequence(float shakeX, float shakeY)
     {
+        AudioSource.PlayClipAtPoint(deathNoise, transform.position, 1.0f);
         yield return StartCoroutine(dmgIndicator());
         Die(shakeX, shakeY);
     }
@@ -328,6 +339,7 @@ public class Enemy : MonoBehaviour, AnimationReceiver
         }
 
         GameObject spawnedParticle = Instantiate(deathParticle, transform.position + new Vector3(0, -1, 0), deathParticle.transform.rotation);
+
         Destroy(gameObject, 0.0f);
         Destroy(spawnedParticle, 1.0f);
     }

@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 4532944059357796333}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.58, y: -0.78, z: 0}
+  m_LocalPosition: {x: 0.83, y: -0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -103,7 +103,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4742132618869154486
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -160,6 +160,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!50 &8028778658890083801
 Rigidbody2D:
   serializedVersion: 5
@@ -290,7 +291,7 @@ MonoBehaviour:
   detectionRange: 25
   wallCheckOrigin: {fileID: 6116920309225856210}
   attackOrigin: {fileID: 5849597758491671394}
-  attackRadius: 1
+  attackRadius: 1.24
   attackRange: 1.5
   attackRangeHeight: 3
   wallCheckLayer:
@@ -302,6 +303,10 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
+  bulletPrefab: {fileID: 0}
+  bullet: {fileID: 0}
+  bulletOrigin: {fileID: 0}
+  deathNoise: {fileID: 8300000, guid: 3a0a27db3916b7a41886ae5932edd42c, type: 3}
 --- !u!1 &8762811398043560987
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,14 +336,14 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.18, z: 0}
-  m_LocalScale: {x: 0.79, y: 0.79, z: 0.79}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2753678460383271187}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5818019186000080423
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -385,7 +390,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -305098677, guid: 5ac312602f7b6994d96744b1f2165345, type: 3}
+  m_Sprite: {fileID: -6325168501573237802, guid: 0fb55c5c41587b44189400a03143d265, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -395,6 +400,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!95 &3578559949559985130
 Animator:
   serializedVersion: 7

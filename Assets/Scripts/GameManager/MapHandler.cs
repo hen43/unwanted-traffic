@@ -1,4 +1,5 @@
 using UnityEngine;
+using Random = UnityEngine.Random;
 using System;
 using System.Collections.Generic;
 
@@ -14,6 +15,7 @@ public class MapHandler : MonoBehaviour
     [Header("Data Lists")]
     public List<MapObjectData> mapObjects;
     public List<EnemyData> enemyTypes;
+    public List<GameObject> groundTiles;
 
     [Header("Map Settings")]
     public int TotalGroundTiles = 210;
@@ -101,22 +103,29 @@ public class MapHandler : MonoBehaviour
             }
         }
 
+        int tileListSize = 0;
+        foreach (var num in groundTiles)
+        {
+            tileListSize++;
+        }
+
+
         for (int i = -5; i < TotalGroundTiles; i++)
         {
             Vector3 spawnPos = new Vector3(i * spacing, 0, 0);
             Vector3 tilePos = spawnPos + initPos;
-            GameObject newTile = Instantiate(groundTile, tilePos, Quaternion.identity, terrainGroup);
+            GameObject newTile = Instantiate(groundTiles[mapPRNG.Next(0, groundTiles.Count)], tilePos, Quaternion.identity, terrainGroup);
             
             if (i == 0) 
             { 
                 OnFirstTileLoaded?.Invoke(tilePos); 
             }
 
-            NumberedPrefab script = newTile.GetComponent<NumberedPrefab>();
-            if (script != null)
-            {
-                script.SetNumber(i + 1);
-            }
+            // NumberedPrefab script = newTile.GetComponent<NumberedPrefab>();
+            // if (script != null)
+            // {
+            //     script.SetNumber(i + 1);
+            // }
 
             MapObjectData selectedObj = null;
 
@@ -144,7 +153,7 @@ public class MapHandler : MonoBehaviour
             if (selectedObj != null && selectedObj.objectPrefab != null)
             {
                 Vector3 offsetY = new Vector3(0, selectedObj.spawnOffsetY, 0);
-                Instantiate(selectedObj.objectPrefab, tilePos + offsetY, Quaternion.identity, terrainGroup);
+                GameObject newObject = Instantiate(selectedObj.objectPrefab, tilePos + offsetY, Quaternion.identity, terrainGroup);
             }
         }
     }

@@ -1,2 +1,22 @@
 fileFormatVersion: 2
 guid: 72805c682c5cb3c4eb8c5e98f51b744d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - animator: {instanceID: 0}
+  - enemyData: {instanceID: 0}
+  - rend: {instanceID: 0}
+  - spriteTransform: {instanceID: 0}
+  - deathParticle: {instanceID: 0}
+  - wallCheckOrigin: {instanceID: 0}
+  - attackOrigin: {instanceID: 0}
+  - bulletPrefab: {instanceID: 0}
+  - bullet: {instanceID: 0}
+  - bulletOrigin: {instanceID: 0}
+  - deathNoise: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

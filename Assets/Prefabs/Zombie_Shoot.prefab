@@ -124,7 +124,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.11, y: 4.46, z: 0}
-  m_LocalScale: {x: 1.82, y: 0.82, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8661144264854848101}
@@ -339,6 +339,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5092779319787135162, guid: bf34dad101ddeca489f7f0c37e16a969, type: 3}
   bullet: {fileID: 5794866379255781474, guid: bf34dad101ddeca489f7f0c37e16a969, type: 3}
   bulletOrigin: {fileID: 8501556409472208359}
+  deathNoise: {fileID: 8300000, guid: 3a0a27db3916b7a41886ae5932edd42c, type: 3}
 --- !u!1 &8762811398043560987
 GameObject:
   m_ObjectHideFlags: 0

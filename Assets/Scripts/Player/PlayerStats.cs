@@ -83,7 +83,7 @@ public class PlayerStats : MonoBehaviour, ITooltipDataProvider
     public RevengeStats CalculateRevenge(int blood, float decayRate = 0f)
     {
         float dmgRd = blood / 3000f;
-        float dmg = blood / 1000f;
+        float dmg = blood / 500f;
         float speed = blood / 2500f;
         float jump = blood / 10000f;
         float reductionFactor = Mathf.Max(0.2f, 1.0f - dmgRd);

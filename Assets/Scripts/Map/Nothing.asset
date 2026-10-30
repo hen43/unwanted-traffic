@@ -15,4 +15,4 @@ MonoBehaviour:
   objectID: Nothing
   objectPrefab: {fileID: 0}
   spawnOffsetY: 0
-  weight: 50
+  weight: 100

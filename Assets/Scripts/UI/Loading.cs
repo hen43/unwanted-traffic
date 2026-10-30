@@ -4,7 +4,7 @@ public class Loading : MonoBehaviour
 {
 
     [SerializeField] private Canvas canvas;
-    private float loadingTime = 3f;
+    private float loadingTime = 1f;
 
     void Start()
     {

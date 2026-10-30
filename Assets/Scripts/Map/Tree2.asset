@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235c96614c83864429fbe6633c069563, type: 3}
+  m_Name: Tree2
+  m_EditorClassIdentifier: Assembly-CSharp::MapObjectData
+  objectID: Tree2
+  objectPrefab: {fileID: 5027049607417582864, guid: a25e991a09a9c054d9409ee663396861, type: 3}
+  spawnOffsetY: 5.5
+  weight: 30

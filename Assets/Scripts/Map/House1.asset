@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TerrainData
   objectID: House1
   objectPrefab: {fileID: 5975742947260180407, guid: ba6b9201ee9977b438f82b079d265179, type: 3}
-  spawnOffsetY: 2.3
+  spawnOffsetY: 5.7
   weight: 10
