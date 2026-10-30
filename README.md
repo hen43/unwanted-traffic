@@ -1,7 +1,6 @@
-# **'unwanted traffic'**
-A hack-and-slash-style action platformer. 
+<img width="400" height="240" alt="Unwanted Traffic" src="https://github.com/user-attachments/assets/e2423868-26e3-448a-b32f-ccc3abf6c580" />
 
-<img width="445" height="250" alt="unwanted traffic gameplay" src="https://github.com/user-attachments/assets/32e8e9d3-1c41-4f04-88e2-cf29d21a96b4" />
+**A hack-and-slash-style action platformer.** 
 
 ### [Play HERE on itch.io (no download required)](https://hen43.itch.io/unwanted-traffic)
 
@@ -13,6 +12,8 @@ A hack-and-slash-style action platformer.
   - Used for a REVENGE mechanic
     - SACRIFICE all of your blood for a temporary yet extremely powerful strength boost
 - Every transaction with blood involves risk evaluation
+
+<img width="445" height="250" alt="unwanted traffic gameplay" src="https://github.com/user-attachments/assets/32e8e9d3-1c41-4f04-88e2-cf29d21a96b4" />
 
 ## The story...
 - A mysterious being, dubbed Conehead by the locals, is a creature born from asphalt as a manifestation of road rage. However, they were born in a suburb, so there was no one to exact revenge upon. They spend their time gardening, but is frequently in conflict with other supernatural beings like aliens and werewolves because they don't understand the appeal of gardening, often destroying plants. Cone wears a traffic cone and stop sign because their neighbors associate it with stopping. The monsters don't, though. Maybe a more violent way would get the message accross?
