@@ -1,7 +1,7 @@
 # **'unwanted traffic'**
 A hack-and-slash-style action platformer. 
 
-<img width="668" height="376" alt="unwanted traffic gameplay" src="https://github.com/user-attachments/assets/32e8e9d3-1c41-4f04-88e2-cf29d21a96b4" />
+<img width="445" height="250" alt="unwanted traffic gameplay" src="https://github.com/user-attachments/assets/32e8e9d3-1c41-4f04-88e2-cf29d21a96b4" />
 
 ### [Play HERE on itch.io (no download required)](https://hen43.itch.io/unwanted-traffic)
 
