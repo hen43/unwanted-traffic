@@ -26,8 +26,8 @@
 - All music was created in REAPER with an electric guitar and a drum plugin.
 - Some sound effects made in jsfxr. 
 - Primarily inspired by Flash games such as Learn to Fly and Alien Hominid.
-- Some Lapse footage of making art and music (Lapse doesn't have sound...) [https://lapse.hackclub.com/user/@hen](url)
-- Tooltip tutorial from this video: [https://www.youtube.com/watch?v=HXFoUGw7eKk](url)
+- Some Lapse footage of making art and music (Lapse doesn't have sound...) https://lapse.hackclub.com/user/@hen
+- Tooltip tutorial from this video: https://www.youtube.com/watch?v=HXFoUGw7eKk
 
 ## AI Usage Disclaimer
 - Google Gemini and Claude were sometimes and strictly used to debug and generate code. 
